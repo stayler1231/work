@@ -1,0 +1,968 @@
+{
+  "groups": [
+    {
+      "key": "furniture",
+      "route": "furniture-and-metalwork",
+      "title": {
+        "ru": "Мебель и металлоконструкции",
+        "en": "Furniture and metalwork",
+        "uz": "Mebel va metall konstruksiyalar"
+      },
+      "images": [
+        {
+          "file": "legacy-works/furniture/001.webp",
+          "source": "/images/sayt-mebel/ОГ_002.webp"
+        },
+        {
+          "file": "legacy-works/furniture/002.webp",
+          "source": "/images/sayt-mebel/ОГ_003.webp"
+        },
+        {
+          "file": "legacy-works/furniture/003.webp",
+          "source": "/images/sayt-mebel/ОГ_004.webp"
+        },
+        {
+          "file": "legacy-works/furniture/004.webp",
+          "source": "/images/sayt-mebel/ОГ_005.webp"
+        },
+        {
+          "file": "legacy-works/furniture/005.webp",
+          "source": "/images/sayt-mebel/ОГ_006.webp"
+        },
+        {
+          "file": "legacy-works/furniture/006.webp",
+          "source": "/images/sayt-mebel/ОГ_007.webp"
+        },
+        {
+          "file": "legacy-works/furniture/007.webp",
+          "source": "/images/sayt-mebel/ОГ_008.webp"
+        },
+        {
+          "file": "legacy-works/furniture/008.webp",
+          "source": "/images/sayt-mebel/ОГ_009.webp"
+        },
+        {
+          "file": "legacy-works/furniture/009.webp",
+          "source": "/images/sayt-mebel/ОГ_010.webp"
+        },
+        {
+          "file": "legacy-works/furniture/010.webp",
+          "source": "/images/sayt-mebel/ОГ_011.webp"
+        },
+        {
+          "file": "legacy-works/furniture/011.webp",
+          "source": "/images/sayt-mebel/ОГ_012.webp"
+        },
+        {
+          "file": "legacy-works/furniture/012.webp",
+          "source": "/images/sayt-mebel/ОГ_013.webp"
+        },
+        {
+          "file": "legacy-works/furniture/013.webp",
+          "source": "/images/images/new-added-images/Мебель/002.webp"
+        },
+        {
+          "file": "legacy-works/furniture/014.webp",
+          "source": "/images/images/new-added-images/Мебель/003.webp"
+        },
+        {
+          "file": "legacy-works/furniture/015.webp",
+          "source": "/images/images/new-added-images/Мебель/004.webp"
+        },
+        {
+          "file": "legacy-works/furniture/016.webp",
+          "source": "/images/images/new-added-images/Мебель/005.webp"
+        },
+        {
+          "file": "legacy-works/furniture/017.webp",
+          "source": "/images/images/new-added-images/Мебель/006.webp"
+        },
+        {
+          "file": "legacy-works/furniture/018.webp",
+          "source": "/images/images/new-added-images/Мебель/007.webp"
+        },
+        {
+          "file": "legacy-works/furniture/019.webp",
+          "source": "/images/images/new-added-images/Мебель/008.webp"
+        },
+        {
+          "file": "legacy-works/furniture/020.webp",
+          "source": "/images/images/new-added-images/Мебель/009.webp"
+        },
+        {
+          "file": "legacy-works/furniture/021.webp",
+          "source": "/images/sayt-mebel/ВИ_001.webp"
+        },
+        {
+          "file": "legacy-works/furniture/022.webp",
+          "source": "/images/sayt-mebel/ВИ_002.webp"
+        },
+        {
+          "file": "legacy-works/furniture/023.webp",
+          "source": "/images/sayt-mebel/ВИ_003.webp"
+        },
+        {
+          "file": "legacy-works/furniture/024.webp",
+          "source": "/images/sayt-mebel/ВИ_004.webp"
+        },
+        {
+          "file": "legacy-works/furniture/025.webp",
+          "source": "/images/sayt-mebel/ВИ_005.webp"
+        },
+        {
+          "file": "legacy-works/furniture/026.webp",
+          "source": "/images/sayt-mebel/ВИ_006.webp"
+        },
+        {
+          "file": "legacy-works/furniture/027.webp",
+          "source": "/images/sayt-mebel/ВИ_007.webp"
+        },
+        {
+          "file": "legacy-works/furniture/028.webp",
+          "source": "/images/sayt-mebel/ВИ_008.webp"
+        },
+        {
+          "file": "legacy-works/furniture/029.webp",
+          "source": "/images/sayt-mebel/ВИ_009.webp"
+        },
+        {
+          "file": "legacy-works/furniture/030.webp",
+          "source": "/images/sayt-mebel/ВИ_010.webp"
+        },
+        {
+          "file": "legacy-works/furniture/product-mebel.webp",
+          "source": "/images/products/mebel.webp"
+        }
+      ],
+      "cover": "legacy-works/furniture/016.webp"
+    },
+    {
+      "key": "letters",
+      "route": "3d-letters",
+      "title": {
+        "ru": "Объёмные буквы",
+        "en": "3D letters",
+        "uz": "Hajmli harflar"
+      },
+      "images": [
+        {
+          "file": "legacy-works/letters/001.webp",
+          "source": "/images/services/1) Bukva/01.webp"
+        },
+        {
+          "file": "legacy-works/letters/002.webp",
+          "source": "/images/services/1) Bukva/02.webp"
+        },
+        {
+          "file": "legacy-works/letters/003.webp",
+          "source": "/images/services/1) Bukva/03.webp"
+        },
+        {
+          "file": "legacy-works/letters/004.webp",
+          "source": "/images/services/1) Bukva/04.webp"
+        },
+        {
+          "file": "legacy-works/letters/005.webp",
+          "source": "/images/services/1) Bukva/05.webp"
+        },
+        {
+          "file": "legacy-works/letters/006.webp",
+          "source": "/images/services/1) Bukva/06.webp"
+        },
+        {
+          "file": "legacy-works/letters/007.webp",
+          "source": "/images/services/1) Bukva/07.webp"
+        },
+        {
+          "file": "legacy-works/letters/008.webp",
+          "source": "/images/services/1) Bukva/08.webp"
+        },
+        {
+          "file": "legacy-works/letters/009.webp",
+          "source": "/images/services/1) Bukva/09.webp"
+        },
+        {
+          "file": "legacy-works/letters/010.webp",
+          "source": "/images/services/1) Bukva/010.webp"
+        },
+        {
+          "file": "legacy-works/letters/011.webp",
+          "source": "/images/services/1) Bukva/011.webp"
+        },
+        {
+          "file": "legacy-works/letters/012.webp",
+          "source": "/images/services/1) Bukva/012.webp"
+        },
+        {
+          "file": "legacy-works/letters/013.webp",
+          "source": "/images/services/1) Bukva/013.webp"
+        },
+        {
+          "file": "legacy-works/letters/014.webp",
+          "source": "/images/services/1) Bukva/014.webp"
+        },
+        {
+          "file": "legacy-works/letters/015.webp",
+          "source": "/images/services/1) Bukva/015.webp"
+        },
+        {
+          "file": "legacy-works/letters/016.webp",
+          "source": "/images/services/1) Bukva/016.webp"
+        },
+        {
+          "file": "legacy-works/letters/017.webp",
+          "source": "/images/services/1) Bukva/017.webp"
+        },
+        {
+          "file": "legacy-works/letters/018.webp",
+          "source": "/images/services/1) Bukva/018.webp"
+        },
+        {
+          "file": "legacy-works/letters/019.webp",
+          "source": "/images/services/1) Bukva/019.webp"
+        },
+        {
+          "file": "legacy-works/letters/020.webp",
+          "source": "/images/services/1) Bukva/020.webp"
+        },
+        {
+          "file": "legacy-works/letters/021.webp",
+          "source": "/images/services/1) Bukva/021.webp"
+        },
+        {
+          "file": "legacy-works/letters/022.webp",
+          "source": "/images/services/1) Bukva/022.webp"
+        },
+        {
+          "file": "legacy-works/letters/023.webp",
+          "source": "/images/services/1) Bukva/023.webp"
+        },
+        {
+          "file": "legacy-works/letters/024.webp",
+          "source": "/images/services/1) Bukva/024.webp"
+        },
+        {
+          "file": "legacy-works/letters/025.webp",
+          "source": "/images/services/1) Bukva/025.webp"
+        },
+        {
+          "file": "legacy-works/letters/026.webp",
+          "source": "/images/services/1) Bukva/026.webp"
+        },
+        {
+          "file": "legacy-works/letters/027.webp",
+          "source": "/images/services/1) Bukva/027.webp"
+        },
+        {
+          "file": "legacy-works/letters/028.webp",
+          "source": "/images/services/1) Bukva/028.webp"
+        },
+        {
+          "file": "legacy-works/letters/029.webp",
+          "source": "/images/services/1) Bukva/OBL.webp"
+        },
+        {
+          "file": "legacy-works/letters/030.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/Chodir.webp"
+        },
+        {
+          "file": "legacy-works/letters/031.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/Kind_School.webp"
+        },
+        {
+          "file": "legacy-works/letters/032.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/Pepsi.webp"
+        },
+        {
+          "file": "legacy-works/letters/033.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2025-10-20_20-39-09.webp"
+        },
+        {
+          "file": "legacy-works/letters/034.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2025-10-24_17-41-38.webp"
+        },
+        {
+          "file": "legacy-works/letters/035.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2025-11-11_20-30-22.webp"
+        },
+        {
+          "file": "legacy-works/letters/036.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2025-11-11_20-30-31.webp"
+        },
+        {
+          "file": "legacy-works/letters/037.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2025-11-15_15-45-36.webp"
+        },
+        {
+          "file": "legacy-works/letters/038.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2026-01-08_18-37-21.webp"
+        },
+        {
+          "file": "legacy-works/letters/039.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2026-01-09_17-20-40.webp"
+        },
+        {
+          "file": "legacy-works/letters/040.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2026-01-10_20-58-40.webp"
+        },
+        {
+          "file": "legacy-works/letters/041.webp",
+          "source": "/images/images/new-added-images/Объемные буквы/photo_2026-01-12_13-11-41.webp"
+        }
+      ],
+      "cover": "legacy-works/letters/021.webp"
+    },
+    {
+      "key": "signs",
+      "route": "signboards",
+      "title": {
+        "ru": "Вывески и таблички",
+        "en": "Signs and plaques",
+        "uz": "Peshlavhalar va tablichkalar"
+      },
+      "images": [
+        {
+          "file": "legacy-works/signs/001.webp",
+          "source": "/images/services/2) Tablichka/T01.webp"
+        },
+        {
+          "file": "legacy-works/signs/002.webp",
+          "source": "/images/services/2) Tablichka/T02.webp"
+        },
+        {
+          "file": "legacy-works/signs/003.webp",
+          "source": "/images/services/2) Tablichka/T03.webp"
+        },
+        {
+          "file": "legacy-works/signs/004.webp",
+          "source": "/images/services/2) Tablichka/T04.webp"
+        },
+        {
+          "file": "legacy-works/signs/005.webp",
+          "source": "/images/services/2) Tablichka/T05.webp"
+        },
+        {
+          "file": "legacy-works/signs/006.webp",
+          "source": "/images/services/2) Tablichka/T06.webp"
+        },
+        {
+          "file": "legacy-works/signs/007.webp",
+          "source": "/images/services/2) Tablichka/T07.webp"
+        },
+        {
+          "file": "legacy-works/signs/008.webp",
+          "source": "/images/services/2) Tablichka/T08.webp"
+        },
+        {
+          "file": "legacy-works/signs/009.webp",
+          "source": "/images/services/2) Tablichka/T09.webp"
+        },
+        {
+          "file": "legacy-works/signs/010.webp",
+          "source": "/images/services/2) Tablichka/T010.webp"
+        },
+        {
+          "file": "legacy-works/signs/011.webp",
+          "source": "/images/services/2) Tablichka/T011.webp"
+        },
+        {
+          "file": "legacy-works/signs/012.webp",
+          "source": "/images/services/2) Tablichka/T012.webp"
+        },
+        {
+          "file": "legacy-works/signs/013.webp",
+          "source": "/images/services/2) Tablichka/T013.webp"
+        },
+        {
+          "file": "legacy-works/signs/014.webp",
+          "source": "/images/services/2) Tablichka/T014.webp"
+        },
+        {
+          "file": "legacy-works/signs/015.webp",
+          "source": "/images/services/2) Tablichka/T015.webp"
+        },
+        {
+          "file": "legacy-works/signs/016.webp",
+          "source": "/images/services/2) Tablichka/T016.webp"
+        },
+        {
+          "file": "legacy-works/signs/017.webp",
+          "source": "/images/services/2) Tablichka/U01.webp"
+        },
+        {
+          "file": "legacy-works/signs/018.webp",
+          "source": "/images/services/2) Tablichka/U02.webp"
+        },
+        {
+          "file": "legacy-works/signs/019.webp",
+          "source": "/images/services/2) Tablichka/U03.webp"
+        },
+        {
+          "file": "legacy-works/signs/020.webp",
+          "source": "/images/services/2) Tablichka/U04.webp"
+        },
+        {
+          "file": "legacy-works/signs/021.webp",
+          "source": "/images/services/2) Tablichka/U05.webp"
+        },
+        {
+          "file": "legacy-works/signs/022.webp",
+          "source": "/images/services/2) Tablichka/U06.webp"
+        },
+        {
+          "file": "legacy-works/signs/023.webp",
+          "source": "/images/images/new-added-images/Таблички/Happy_Life.webp"
+        },
+        {
+          "file": "legacy-works/signs/024.webp",
+          "source": "/images/images/new-added-images/Таблички/Tab_01.webp"
+        },
+        {
+          "file": "legacy-works/signs/025.webp",
+          "source": "/images/images/new-added-images/Таблички/photo_2026-01-10_17-49-27 (2).webp"
+        },
+        {
+          "file": "legacy-works/signs/026.webp",
+          "source": "/images/images/new-added-images/Таблички/photo_2026-01-10_17-49-27.webp"
+        },
+        {
+          "file": "legacy-works/signs/027.webp",
+          "source": "/images/images/new-added-images/Таблички/photo_2026-01-10_17-49-28.webp"
+        },
+        {
+          "file": "legacy-works/signs/028.webp",
+          "source": "/images/images/new-added-images/Вывески/Happy_Life.webp"
+        },
+        {
+          "file": "legacy-works/signs/029.webp",
+          "source": "/images/images/new-added-images/Вывески/Happy_Life_01.webp"
+        },
+        {
+          "file": "legacy-works/signs/product-fotostudio.webp",
+          "source": "/images/products/fotostudio.webp"
+        },
+        {
+          "file": "legacy-works/signs/product-fastfood.webp",
+          "source": "/images/products/fastfood.webp"
+        },
+        {
+          "file": "legacy-works/signs/product-milliytaom.webp",
+          "source": "/images/products/milliytaom.webp"
+        },
+        {
+          "file": "legacy-works/signs/product-znak.webp",
+          "source": "/images/products/znak.webp"
+        }
+      ],
+      "cover": "legacy-works/signs/015.webp"
+    },
+    {
+      "key": "roof",
+      "route": "advertising-structures",
+      "title": {
+        "ru": "Крышные конструкции",
+        "en": "Rooftop structures",
+        "uz": "Tom usti konstruksiyalari"
+      },
+      "images": [
+        {
+          "file": "legacy-works/roof/001.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 01.webp"
+        },
+        {
+          "file": "legacy-works/roof/002.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 02.webp"
+        },
+        {
+          "file": "legacy-works/roof/003.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 03.webp"
+        },
+        {
+          "file": "legacy-works/roof/004.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 04.webp"
+        },
+        {
+          "file": "legacy-works/roof/005.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 05.webp"
+        },
+        {
+          "file": "legacy-works/roof/006.webp",
+          "source": "/images/services/3) Krishniy konstruksiya/K 06.webp"
+        }
+      ],
+      "cover": "legacy-works/roof/001.webp"
+    },
+    {
+      "key": "wide-print",
+      "route": "large-format-printing",
+      "title": {
+        "ru": "Широкоформатная печать",
+        "en": "Large format printing",
+        "uz": "Keng formatli chop etish"
+      },
+      "images": [
+        {
+          "file": "legacy-works/wide-print/001.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF01.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/002.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF02.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/003.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF03.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/004.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF04.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/005.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF05.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/006.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF06.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/007.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF07.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/008.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF08.webp"
+        },
+        {
+          "file": "legacy-works/wide-print/009.webp",
+          "source": "/images/services/4) Shirokoformat pechat/SF09.webp"
+        }
+      ],
+      "cover": "legacy-works/wide-print/005.webp"
+    },
+    {
+      "key": "posm",
+      "route": "pos-materials",
+      "title": {
+        "ru": "POSM и торговое оборудование",
+        "en": "POSM and retail displays",
+        "uz": "POSM va savdo jihozlari"
+      },
+      "images": [
+        {
+          "file": "legacy-works/posm/001.webp",
+          "source": "/images/services/5) POSM/P01.webp"
+        },
+        {
+          "file": "legacy-works/posm/002.webp",
+          "source": "/images/services/5) POSM/P02.webp"
+        },
+        {
+          "file": "legacy-works/posm/003.webp",
+          "source": "/images/services/5) POSM/P03.webp"
+        },
+        {
+          "file": "legacy-works/posm/004.webp",
+          "source": "/images/services/5) POSM/P05.webp"
+        },
+        {
+          "file": "legacy-works/posm/005.webp",
+          "source": "/images/services/5) POSM/P06.webp"
+        },
+        {
+          "file": "legacy-works/posm/006.webp",
+          "source": "/images/services/5) POSM/P07.webp"
+        },
+        {
+          "file": "legacy-works/posm/007.webp",
+          "source": "/images/services/5) POSM/P08.webp"
+        },
+        {
+          "file": "legacy-works/posm/008.webp",
+          "source": "/images/services/5) POSM/IMG_7918.webp"
+        },
+        {
+          "file": "legacy-works/posm/009.webp",
+          "source": "/images/services/5) POSM/IMG_7920.webp"
+        },
+        {
+          "file": "legacy-works/posm/010.webp",
+          "source": "/images/services/5) POSM/photo_2025-11-13_15-12-32.webp"
+        },
+        {
+          "file": "legacy-works/posm/011.webp",
+          "source": "/images/services/5) POSM/photo_2025-12-29_18-18-16.webp"
+        },
+        {
+          "file": "legacy-works/posm/012.webp",
+          "source": "/images/services/5) POSM/photo_2026-01-06_12-59-21.webp"
+        },
+        {
+          "file": "legacy-works/posm/013.webp",
+          "source": "/images/services/5) POSM/Доширак_001.webp"
+        },
+        {
+          "file": "legacy-works/posm/014.webp",
+          "source": "/images/services/5) POSM/Доширак_002.webp"
+        },
+        {
+          "file": "legacy-works/posm/015.webp",
+          "source": "/images/services/5) POSM/Кола_001.webp"
+        },
+        {
+          "file": "legacy-works/posm/016.webp",
+          "source": "/images/services/5) POSM/Кола_002.webp"
+        },
+        {
+          "file": "legacy-works/posm/017.webp",
+          "source": "/images/services/5) POSM/Кола_003.webp"
+        },
+        {
+          "file": "legacy-works/posm/018.webp",
+          "source": "/images/services/5) POSM/Кола_004.webp"
+        },
+        {
+          "file": "legacy-works/posm/product-whiskas.webp",
+          "source": "/images/products/whiskas.webp"
+        }
+      ],
+      "cover": "legacy-works/posm/010.webp"
+    },
+    {
+      "key": "exhibition",
+      "route": "advertising-stands",
+      "title": {
+        "ru": "Выставочные стенды",
+        "en": "Exhibition stands",
+        "uz": "Ko‘rgazma stendlari"
+      },
+      "images": [
+        {
+          "file": "legacy-works/exhibition/001.webp",
+          "source": "/images/services/6) Vistavka/V01.webp"
+        },
+        {
+          "file": "legacy-works/exhibition/002.webp",
+          "source": "/images/services/6) Vistavka/V02.webp"
+        },
+        {
+          "file": "legacy-works/exhibition/product-flash.webp",
+          "source": "/images/products/flash.webp"
+        },
+        {
+          "file": "legacy-works/exhibition/product-stent.webp",
+          "source": "/images/products/stent.webp"
+        }
+      ],
+      "cover": "legacy-works/exhibition/001.webp"
+    },
+    {
+      "key": "integrated",
+      "route": "interior-branding",
+      "title": {
+        "ru": "Комплексное оформление",
+        "en": "Complete space branding",
+        "uz": "Kompleks bezatish"
+      },
+      "images": [
+        {
+          "file": "legacy-works/integrated/001.webp",
+          "source": "/images/services/7) Kompleks oformleniya/K01.webp"
+        },
+        {
+          "file": "legacy-works/integrated/002.webp",
+          "source": "/images/services/7) Kompleks oformleniya/K02.webp"
+        },
+        {
+          "file": "legacy-works/integrated/003.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/Arca.webp"
+        },
+        {
+          "file": "legacy-works/integrated/004.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/photo_2025-10-15_20-53-18.webp"
+        },
+        {
+          "file": "legacy-works/integrated/005.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/photo_2025-11-22_17-10-25.webp"
+        },
+        {
+          "file": "legacy-works/integrated/007.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/photo_2025-12-04_16-24-01.webp"
+        },
+        {
+          "file": "legacy-works/integrated/008.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/photo_2025-12-11_18-23-52.webp"
+        },
+        {
+          "file": "legacy-works/integrated/009.webp",
+          "source": "/images/images/new-added-images/Комплексное формление/photo_2026-01-08_15-17-34.webp"
+        },
+        {
+          "file": "legacy-works/integrated/product-bovard.webp",
+          "source": "/images/products/bovard.webp"
+        },
+        {
+          "file": "legacy-works/integrated/product-kartina3.webp",
+          "source": "/images/products/kartina3.webp"
+        }
+      ],
+      "cover": "legacy-works/integrated/001.webp"
+    },
+    {
+      "key": "bus-stops",
+      "route": "outdoor-advertising",
+      "title": {
+        "ru": "Оформление остановок",
+        "en": "Bus stop branding",
+        "uz": "Bekatlarni bezatish"
+      },
+      "images": [
+        {
+          "file": "legacy-works/bus-stops/001.webp",
+          "source": "/images/services/8) Astanovka/A01.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/002.webp",
+          "source": "/images/services/8) Astanovka/A02.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/003.webp",
+          "source": "/images/services/8) Astanovka/A03.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/004.webp",
+          "source": "/images/services/8) Astanovka/A04.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/005.webp",
+          "source": "/images/services/8) Astanovka/A05.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/006.webp",
+          "source": "/images/images/new-added-images/Остановки/photo_2025-12-18_19-01-02.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/007.webp",
+          "source": "/images/images/new-added-images/Остановки/photo_2026-01-19_13-44-46.webp"
+        },
+        {
+          "file": "legacy-works/bus-stops/008.webp",
+          "source": "/images/images/new-added-images/Остановки/photo_2026-01-20_12-16-56.webp"
+        }
+      ],
+      "cover": "legacy-works/bus-stops/001.webp"
+    },
+    {
+      "key": "vehicles",
+      "route": "vehicle-branding",
+      "title": {
+        "ru": "Брендирование транспорта",
+        "en": "Vehicle branding",
+        "uz": "Transportni brendlash"
+      },
+      "images": [
+        {
+          "file": "legacy-works/vehicles/001.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/1.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/002.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/2.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/003.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/3.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/004.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/4.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/005.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/5.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/006.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/6.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/007.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/7.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/008.webp",
+          "source": "/images/categories/Брендирование Авто транспорта/8.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/009.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/Home_Cleaning_01.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/010.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/Home_Cleaning_02.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/011.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/Home_Cleaning_03.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/012.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/photo_2025-10-20_19-56-05.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/013.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/photo_2025-11-20_16-51-55.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/014.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/photo_2026-01-09_20-42-42.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/015.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/vitros_1.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/016.webp",
+          "source": "/images/images/new-added-images/Брендинг авто/vitros_2.webp"
+        },
+        {
+          "file": "legacy-works/vehicles/product-uzumcar.webp",
+          "source": "/images/products/uzumcar.webp"
+        }
+      ],
+      "cover": "legacy-works/vehicles/009.webp"
+    },
+    {
+      "key": "polygraphy",
+      "route": "printing",
+      "title": {
+        "ru": "Полиграфия",
+        "en": "Printed materials",
+        "uz": "Poligrafiya"
+      },
+      "images": [
+        {
+          "file": "legacy-works/polygraphy/001.webp",
+          "source": "/images/services/13) Poligrafiya/P01.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/002.webp",
+          "source": "/images/services/13) Poligrafiya/P02.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/003.webp",
+          "source": "/images/services/13) Poligrafiya/P03.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/004.webp",
+          "source": "/images/services/13) Poligrafiya/P04.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/005.webp",
+          "source": "/images/services/13) Poligrafiya/P05.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/006.webp",
+          "source": "/images/services/13) Poligrafiya/P06.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/007.webp",
+          "source": "/images/services/13) Poligrafiya/P07.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/008.webp",
+          "source": "/images/services/13) Poligrafiya/P08.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/009.webp",
+          "source": "/images/services/13) Poligrafiya/P09.webp"
+        },
+        {
+          "file": "legacy-works/polygraphy/010.webp",
+          "source": "/images/services/13) Poligrafiya/P010.webp"
+        }
+      ],
+      "cover": "legacy-works/polygraphy/006.webp"
+    },
+    {
+      "key": "uv-print",
+      "route": "printing",
+      "title": {
+        "ru": "УФ-печать",
+        "en": "UV printing",
+        "uz": "UV bosma"
+      },
+      "images": [
+        {
+          "file": "legacy-works/uv-print/001.webp",
+          "source": "/images/services/14) UF pechat/UF01.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/002.webp",
+          "source": "/images/services/14) UF pechat/UF02.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/003.webp",
+          "source": "/images/services/14) UF pechat/UF03.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/004.webp",
+          "source": "/images/services/14) UF pechat/UF04.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/005.webp",
+          "source": "/images/services/14) UF pechat/UF05.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/006.webp",
+          "source": "/images/services/14) UF pechat/UF06.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/007.webp",
+          "source": "/images/services/14) UF pechat/UF07.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/008.webp",
+          "source": "/images/services/14) UF pechat/UF08.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/009.webp",
+          "source": "/images/services/14) UF pechat/UF09.webp"
+        },
+        {
+          "file": "legacy-works/uv-print/010.webp",
+          "source": "/images/services/14) UF pechat/UF010.webp"
+        }
+      ],
+      "cover": "legacy-works/uv-print/001.webp"
+    },
+    {
+      "key": "neon",
+      "route": "illuminated-letters",
+      "title": {
+        "ru": "Неон",
+        "en": "Neon",
+        "uz": "Neon"
+      },
+      "images": [
+        {
+          "file": "legacy-works/neon/001.webp",
+          "source": "/images/images/new-added-images/Неон/PNX.webp"
+        },
+        {
+          "file": "legacy-works/neon/002.webp",
+          "source": "/images/images/new-added-images/Неон/photo_2024-10-22_12-12-34.webp"
+        },
+        {
+          "file": "legacy-works/neon/003.webp",
+          "source": "/images/images/new-added-images/Неон/photo_2024-10-22_12-12-56.webp"
+        },
+        {
+          "file": "legacy-works/neon/004.webp",
+          "source": "/images/images/new-added-images/Неон/photo_2026-01-09_13-18-53.webp"
+        }
+      ],
+      "cover": "legacy-works/neon/003.webp"
+    }
+  ]
+}

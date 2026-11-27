@@ -1,0 +1,10 @@
+{
+  "family": "Geometria",
+  "stylesheet": "https://fonts.cdnfonts.com/css/geometria",
+  "fonts": {
+    "400": "https://fonts.cdnfonts.com/s/14868/Geometria.woff",
+    "500": "https://fonts.cdnfonts.com/s/14868/Geometria-Medium.woff",
+    "700": "https://fonts.cdnfonts.com/s/14868/Geometria-Bold.woff",
+    "800": "https://fonts.cdnfonts.com/s/14868/Geometria-ExtraBold.woff"
+  }
+}

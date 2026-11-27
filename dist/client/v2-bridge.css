@@ -1,0 +1,36 @@
+/* Match the established About and order flows to the new burgundy navigation. */
+.about-page .header,.order-page .header{background:#7d1020}
+.about-page .mobile-nav,.order-page .mobile-nav{background:#7d1020}
+.about-page .header .desktop-nav a[aria-current=page],.order-page .header .desktop-nav a[aria-current=page]{color:#fff}
+.about-page .footer,.order-page .footer{background:#676363}
+
+/* About and order now open with the same full-width statement as home. */
+.about-intro-band,.order-hero-band{background:#9b1423;color:#fff}
+.about-page-intro{padding-top:67px;padding-bottom:70px}
+.about-page-intro .eyebrow{color:#ffffffc8}
+.about-page-intro h1{color:transparent;-webkit-text-stroke:1.5px #fff;font-size:clamp(78px,10vw,140px);font-weight:700;line-height:.9;letter-spacing:-.07em;margin:25px 0}
+.about-page-intro>p:last-child{color:#ededed;max-width:650px;font-size:clamp(19px,2vw,24px)}
+.about-page .about{padding-top:70px}
+.about-picture>img{border:5px solid #fff;box-shadow:0 15px 33px #00000015}
+.team-card img{border:4px solid #fff;box-shadow:0 8px 20px #0000000c}
+.order-hero{color:#fff}
+.order-hero .eyebrow{color:#ffffffc8}
+.order-hero h1{color:#fff;font-weight:700}
+.order-hero h1 em{color:transparent;-webkit-text-stroke:1.5px #fff}
+.order-hero-content>p:not(.eyebrow){color:#ededed}
+.order-hero-link{background:#fff;color:#9b1423}
+.order-hero-link:hover{background:#f1e9e8;color:#7d1020}
+.order-curve{opacity:.09;filter:brightness(0) invert(1)}
+.order-photo{border-color:#fff;border-width:5px}
+.order-hero-sticker{border:4px solid #fff;border-radius:20px;background:#9b1423}
+.order-ribbon{background:#f4eeed;color:#7d1020}
+
+@media(max-width:700px){
+  .about-page-intro{padding-top:48px;padding-bottom:53px}
+  .about-page-intro h1{font-size:clamp(58px,15vw,84px);margin:20px 0;-webkit-text-stroke:1px #fff}
+  html[lang=uz] .about-page-intro h1{font-size:clamp(43px,10vw,65px)}
+  .about-page-intro>p:last-child{font-size:17px}
+  .about-page .about{padding-top:52px}
+  .order-hero h1 em{-webkit-text-stroke:1px #fff}
+  .order-hero-sticker{border-width:3px;border-radius:13px}
+}
