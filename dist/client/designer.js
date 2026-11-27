@@ -4,10 +4,11 @@
   const $$ = selector => [...document.querySelectorAll(selector)];
   const canvas = $('#designer-canvas');
   const context = canvas.getContext('2d');
+  const resizeHandles = ['#designer-resize-width','#designer-resize-height','#designer-resize-both'].map(selector => $(selector));
   const preview = $('#designer-preview-canvas');
   const previewContext = preview.getContext('2d');
   const stageArea = $('.designer-stage-area');
-  const freeDraft = {};
+  const freeDraft = {previewWidth:3,previewHeight:2};
   const freeDraftLabels = {ru: 'Свободный макет', uz: 'Erkin maket', en: 'Freeform mockup'};
   const templateDrafts = {
     banner:{type:'banner',width:3,height:1.5,template:true},
@@ -17,9 +18,9 @@
     custom:{type:'custom',title:'',template:true}
   };
   const editorCopy = {
-    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',resetView:'Сбросить вид',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
-    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',resetView:'Ko‘rinishni tiklash',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
-    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',resetView:'Reset view',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
+    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',resetView:'Сбросить вид',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',resizeNote:'Перетащите элемент или потяните за маркеры справа и снизу, чтобы изменить размер всего макета.',resizeWidth:'Изменить ширину макета',resizeHeight:'Изменить высоту макета',resizeBoth:'Изменить ширину и высоту макета',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
+    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',resetView:'Ko‘rinishni tiklash',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',resizeNote:'Elementni suring yoki maketning eni va bo‘yini o‘zgartirish uchun yon va pastki tutqichlarni torting.',resizeWidth:'Maket enini o‘zgartirish',resizeHeight:'Maket bo‘yini o‘zgartirish',resizeBoth:'Maket eni va bo‘yini o‘zgartirish',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
+    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',resetView:'Reset view',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',resizeNote:'Drag an element, or pull the right and bottom handles to resize the whole mockup.',resizeWidth:'Resize mockup width',resizeHeight:'Resize mockup height',resizeBoth:'Resize mockup width and height',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
   };
   let items = [];
   let activeItem = null;
@@ -37,11 +38,12 @@
     en: {text:'Enter text for the mockup.',image:'Choose a JPG, PNG or WebP file up to 5 MB.',limit:'You can place up to 50 elements in one mockup.',export:'We could not prepare the mockup. Try a smaller image.'}
   };
   const isBanner = item => item?.type === 'banner' || item?.type === 'banner_frame';
+  const canResizeMockup = item => item === freeDraft || isBanner(item) || item?.type === 'custom';
   const ratio = item => {
-    if (item === freeDraft) return 1.5;
+    if (item === freeDraft) return item.previewWidth / item.previewHeight;
     if (isBanner(item)) return item.width / item.height;
     if (item.type === 'badge') return 1.6; // Preview only; badge dimensions are confirmed by the manager.
-    if (item.type === 'custom') return 1.5;
+    if (item.type === 'custom') return (item.previewWidth || 3) / (item.previewHeight || 2);
     return item.size === '30x15' ? 2 : 2.5;
   };
   function model(item) {
@@ -53,7 +55,8 @@
   function error(message = '') { $('#designer-error').textContent = message; }
   function dimensions(item, maxWidth = 1200, maxHeight = 1100) {
     const r = ratio(item);
-    return {width: maxWidth, height: Math.max(100, Math.min(maxHeight, Math.round(maxWidth / r)))};
+    const width = Math.max(1, Math.min(maxWidth, Math.round(maxHeight * r)));
+    return {width, height: Math.max(1, Math.round(width / r))};
   }
   function bounds(ctx, element, width, height) {
     if (element.kind === 'draw') {
@@ -127,7 +130,25 @@
       paint(previewContext, activeItem, size.width, size.height);
     }
     if (stageArea.classList.contains('is-3d')) requestAnimationFrame(fit3dObject);
+    else requestAnimationFrame(positionResizeHandles);
     document.dispatchEvent(new Event('colourway:designer-change'));
+  }
+  function positionResizeHandles() {
+    if (!activeItem || !canResizeMockup(activeItem) || stageArea.classList.contains('is-3d')) return;
+    const rect = canvas.getBoundingClientRect();
+    const stage = canvas.parentElement.getBoundingClientRect();
+    const half = resizeHandles[0].offsetWidth / 2;
+    resizeHandles[0].style.left = `${rect.right - stage.left - half}px`;
+    resizeHandles[0].style.top = `${rect.top - stage.top + rect.height / 2 - half}px`;
+    resizeHandles[1].style.left = `${rect.left - stage.left + rect.width / 2 - half}px`;
+    resizeHandles[1].style.top = `${rect.bottom - stage.top - half}px`;
+    resizeHandles[2].style.left = `${rect.right - stage.left - half}px`;
+    resizeHandles[2].style.top = `${rect.bottom - stage.top - half}px`;
+  }
+  function updateResizeHandles() {
+    const visible = canResizeMockup(activeItem) && !stageArea.classList.contains('is-3d');
+    resizeHandles.forEach(handle => {handle.hidden = !visible;});
+    if (visible) requestAnimationFrame(positionResizeHandles);
   }
   function layerName(element, index) {
     const kind = {
@@ -189,6 +210,7 @@
     selected = -1;
     dragging = null;
     stageArea.dataset.product = item === freeDraft ? 'free' : item.type;
+    updateResizeHandles();
     const templateKey = item === freeDraft ? 'free' : Object.entries(templateDrafts).find(([,draft]) => draft === item)?.[0] ?? item?.type;
     $$('.designer-template').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.designerTemplate === templateKey)));
     const optionValue = item === freeDraft ? '' : templateKey ? `template:${templateKey}` : String(items.indexOf(item));
@@ -229,6 +251,7 @@
     const nextItem = chooseLast && index >= 0 ? items[index] : items.includes(activeItem) || Object.values(templateDrafts).includes(activeItem) ? activeItem : freeDraft;
     selectItem(nextItem);
     $$('[data-designer-copy]').forEach(node => {node.textContent = editorCopy[language][node.dataset.designerCopy];});
+    resizeHandles.forEach((handle,index) => handle.setAttribute('aria-label',editorCopy[language][['resizeWidth','resizeHeight','resizeBoth'][index]]));
     setView(stageArea.classList.contains('is-3d') ? '3d' : '2d');
   }
   $('#designer-item').addEventListener('change', event => {
@@ -259,6 +282,65 @@
     if (draft === activeItem) render();
   }
   ['#order-width','#order-height','#order-size'].forEach(selector => $(selector).addEventListener('input',syncTemplateDimensions));
+  function mockupSize(item) {
+    if (isBanner(item) && item.template) return {width:Number($('#order-width').value) || item.width,height:Number($('#order-height').value) || item.height};
+    return isBanner(item) ? {width:item.width,height:item.height} : {width:item.previewWidth || 3,height:item.previewHeight || 2};
+  }
+  function resizeMockup(width, height) {
+    if (!activeItem || !canResizeMockup(activeItem)) return;
+    const item = activeItem;
+    if (isBanner(item)) {
+      const unit = item.template ? $('#order-dimension-unit').value : item.unit || 'm';
+      const min = unit === 'cm' ? 10 : .1;
+      const max = unit === 'cm' ? 2000 : 20;
+      const round = value => unit === 'cm' ? Math.round(value) : Math.round(value * 100) / 100;
+      const nextWidth = round(Math.max(min,Math.min(max,width)));
+      const nextHeight = round(Math.max(min,Math.min(max,height)));
+      if (item.template) {
+        const widthInput = $('#order-width'), heightInput = $('#order-height');
+        if (Number(widthInput.value) !== nextWidth) {widthInput.value = String(nextWidth); widthInput.dispatchEvent(new Event('input',{bubbles:true}));}
+        if (Number(heightInput.value) !== nextHeight) {heightInput.value = String(nextHeight); heightInput.dispatchEvent(new Event('input',{bubbles:true}));}
+      } else {
+        item.width = nextWidth; item.height = nextHeight; render();
+      }
+    } else {
+      item.previewWidth = Math.round(Math.max(.3,Math.min(12,width)) * 100) / 100;
+      item.previewHeight = Math.round(Math.max(.3,Math.min(12,height)) * 100) / 100;
+      model(item).touched = true;
+      render();
+    }
+  }
+  resizeHandles.forEach((handle,index) => {
+    let resizing = null;
+    handle.addEventListener('pointerdown', event => {
+      if (!activeItem || !canResizeMockup(activeItem)) return;
+      event.preventDefault();
+      const size = mockupSize(activeItem);
+      const rect = canvas.getBoundingClientRect();
+      resizing = {pointerId:event.pointerId,x:event.clientX,y:event.clientY,width:size.width,height:size.height,screenWidth:rect.width,screenHeight:rect.height};
+      handle.setPointerCapture(event.pointerId);
+    });
+    handle.addEventListener('pointermove', event => {
+      if (!resizing || resizing.pointerId !== event.pointerId) return;
+      const width = index === 1 ? resizing.width : resizing.width * (1 + (event.clientX - resizing.x) / Math.max(50,resizing.screenWidth));
+      const height = index === 0 ? resizing.height : resizing.height * (1 + (event.clientY - resizing.y) / Math.max(50,resizing.screenHeight));
+      resizeMockup(width,height);
+    });
+    const stop = () => {resizing = null;};
+    handle.addEventListener('pointerup',stop);
+    handle.addEventListener('pointercancel',stop);
+    handle.addEventListener('lostpointercapture',stop);
+    handle.addEventListener('keydown', event => {
+      const horizontal = ['ArrowLeft','ArrowRight'].includes(event.key);
+      const vertical = ['ArrowUp','ArrowDown'].includes(event.key);
+      if (!horizontal && !vertical || horizontal && index === 1 || vertical && index === 0) return;
+      event.preventDefault();
+      const size = mockupSize(activeItem);
+      const step = isBanner(activeItem) && (activeItem.unit || $('#order-dimension-unit').value) === 'cm' ? (event.shiftKey ? 10 : 1) : event.shiftKey ? .25 : .05;
+      resizeMockup(size.width + (horizontal ? event.key === 'ArrowRight' ? step : -step : 0),size.height + (vertical ? event.key === 'ArrowDown' ? step : -step : 0));
+    });
+  });
+  new ResizeObserver(() => requestAnimationFrame(positionResizeHandles)).observe(canvas.parentElement);
   function setDrawingTool(active) {
     drawingTool = active;
     stageArea.classList.toggle('is-drawing',active);
@@ -282,7 +364,8 @@
     $('#designer-view-2d').setAttribute('aria-pressed',String(mode === '2d'));
     $('#designer-view-3d').setAttribute('aria-pressed',String(mode === '3d'));
     $('#designer-reset-3d').hidden = mode !== '3d';
-    $('.designer-stage-note').textContent = editorCopy[language][mode === '3d' ? 'previewNote' : drawingTool ? 'drawNote' : 'editNote'];
+    $('.designer-stage-note').textContent = editorCopy[language][mode === '3d' ? 'previewNote' : drawingTool ? 'drawNote' : canResizeMockup(activeItem) ? 'resizeNote' : 'editNote'];
+    updateResizeHandles();
     if (mode === '3d') requestAnimationFrame(fit3dObject);
   }
   $('#designer-view-2d').addEventListener('click',() => setView('2d'));
@@ -526,6 +609,7 @@
       const draft = templateDrafts[item.type];
       if (!draft?.design?.touched) return;
       item.design = {background:draft.design.background,elements:draft.design.elements.map(element => ({...element,...(element.points ? {points:element.points.map(point => ({...point}))} : {})})),touched:true};
+      if (item.type === 'custom') {item.previewWidth = draft.previewWidth || 3; item.previewHeight = draft.previewHeight || 2;}
       draft.design = {background:'#ffffff',elements:[],touched:false};
     },
     showError:() => error(errors[language].export)

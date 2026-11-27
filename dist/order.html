@@ -17,11 +17,11 @@
   <link rel="stylesheet" href="order.css?v=93687f1984c2">
   <link rel="stylesheet" href="scale.css?v=5a3ba88e3b29">
   <link rel="stylesheet" href="v2-bridge.css?v=55609f15a143">
-  <link rel="stylesheet" href="ziynat-order.css?v=244b1e368f42">
+  <link rel="stylesheet" href="ziynat-order.css?v=40d61843beeb">
   <script src="data.js?v=00c63562b3d4" defer></script>
   <script src="en.js?v=05b5e683c829" defer></script>
   <script src="order-en.js?v=4bed9adb6691" defer></script>
-  <script src="designer.js?v=318d315c69f6" defer></script>
+  <script src="designer.js?v=2346dfdec6a6" defer></script>
   <script src="order.js?v=4dbf46328841" defer></script>
   <script src="sw-register.js?v=2fe1e1476bc6" defer></script>
 <link rel="canonical" href="https://colourway.uz/order"><meta property="og:type" content="website"><meta property="og:site_name" content="ColourWay Design"><meta property="og:locale" content="ru_UZ"><meta property="og:title" content="Создать макет и отправить заказ — ColourWay Design"><meta property="og:description" content="Соберите проект в конструкторе ColourWay, добавьте референсы и отправьте заявку на изготовление менеджеру."><meta property="og:url" content="https://colourway.uz/order"><meta property="og:image" content="https://colourway.uz/assets/exhibition.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Создать макет и отправить заказ — ColourWay Design"><meta name="twitter:description" content="Соберите проект в конструкторе ColourWay, добавьте референсы и отправьте заявку на изготовление менеджеру."><meta name="twitter:image" content="https://colourway.uz/assets/exhibition.webp"><script src="/seo-analytics.js" defer></script><meta name="robots" content="noindex,follow"></head>
@@ -98,6 +98,9 @@
                 <div class="designer-stage-top"><span data-designer-copy="stageTitle">Ваш макет</span><div class="designer-stage-actions"><button type="button" id="designer-reset-3d" data-designer-copy="resetView" hidden>Сбросить вид</button><div class="designer-view-switch" role="group" aria-label="Режим просмотра"><button type="button" id="designer-view-2d" aria-pressed="true">2D</button><button type="button" id="designer-view-3d" aria-pressed="false">3D</button></div></div></div>
                 <div class="designer-stage">
                   <canvas id="designer-canvas" width="1000" height="600" tabindex="0" aria-label="Интерактивный холст макета" data-aria-i18n="designerCanvas"></canvas>
+                  <button type="button" class="designer-canvas-handle handle-width" id="designer-resize-width" aria-label="Изменить ширину макета"></button>
+                  <button type="button" class="designer-canvas-handle handle-height" id="designer-resize-height" aria-label="Изменить высоту макета"></button>
+                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-both" aria-label="Изменить ширину и высоту макета"></button>
                   <div class="designer-3d-scene" aria-hidden="true">
                     <div class="designer-3d-object">
                       <div class="designer-product-back"></div>

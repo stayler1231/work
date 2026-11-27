@@ -161,7 +161,13 @@
 .ziynat-order-page .designer-view-switch button { min-width: 38px; min-height: 28px; border-radius: 999px; background: transparent; color: #666; font-size: 12px; font-weight: 700; cursor: pointer; }
 .ziynat-order-page .designer-view-switch button[aria-pressed="true"] { background: #991427; color: #fff; }
 .ziynat-order-page .designer-stage { position: relative; flex: 1; min-height: 310px; padding: clamp(16px,3vw,32px); border: 0; border-radius: 0; background: transparent; overflow: hidden; }
-.ziynat-order-page .designer-stage #designer-canvas { max-height: 420px; border: 1px solid #d1d1d1; border-radius: 3px; box-shadow: 0 16px 35px #24242427; }
+.ziynat-order-page .designer-stage #designer-canvas { max-height: min(68dvh,650px); border: 1px solid #d1d1d1; border-radius: 3px; box-shadow: 0 16px 35px #24242427; }
+.ziynat-order-page .designer-canvas-handle { position: absolute; z-index: 5; width: 22px; height: 22px; border: 3px solid #fff; border-radius: 7px; background: #991427; box-shadow: 0 2px 9px #2424245c; touch-action: none; }
+.ziynat-order-page .designer-canvas-handle[hidden],.ziynat-order-page .designer-stage-area.is-3d .designer-canvas-handle { display: none!important; }
+.ziynat-order-page .designer-canvas-handle.handle-width { cursor: ew-resize; }
+.ziynat-order-page .designer-canvas-handle.handle-height { cursor: ns-resize; }
+.ziynat-order-page .designer-canvas-handle.handle-corner { cursor: nwse-resize; }
+.ziynat-order-page .designer-canvas-handle:focus-visible { outline: 3px solid #991427; outline-offset: 3px; }
 .ziynat-order-page .designer-stage-note { margin: 0; padding: 12px 18px; border-top: 1px solid #dedede; color: #666; font-size: 11px; line-height: 1.4; }
 .ziynat-order-page .designer-inspector { min-width: 0; padding: 18px; background: #fff; }
 .ziynat-order-page .designer-controls { position: relative; }
@@ -195,8 +201,8 @@
 .ziynat-order-page .designer-product-edge { position: absolute; background: linear-gradient(90deg,var(--edge-light),var(--edge-dark)); }
 .ziynat-order-page .designer-product-edge-right { top: 0; left: 100%; width: var(--depth); height: 100%; transform-origin: left center; transform: translateZ(calc(var(--depth) / 2)) rotateY(90deg); }
 .ziynat-order-page .designer-product-edge-left { top: 0; right: 100%; width: var(--depth); height: 100%; transform-origin: right center; transform: translateZ(calc(var(--depth) / 2)) rotateY(-90deg); }
-.ziynat-order-page .designer-product-edge-top { bottom: 100%; left: 0; width: 100%; height: var(--depth); transform-origin: center bottom; transform: translateZ(calc(var(--depth) / 2)) rotateX(-90deg); }
-.ziynat-order-page .designer-product-edge-bottom { top: 100%; left: 0; width: 100%; height: var(--depth); transform-origin: center top; transform: translateZ(calc(var(--depth) / 2)) rotateX(90deg); }
+.ziynat-order-page .designer-product-edge-top { bottom: 100%; left: 0; width: 100%; height: var(--depth); transform-origin: center bottom; transform: translateZ(calc(var(--depth) / 2)) rotateX(90deg); }
+.ziynat-order-page .designer-product-edge-bottom { top: 100%; left: 0; width: 100%; height: var(--depth); transform-origin: center top; transform: translateZ(calc(var(--depth) / 2)) rotateX(-90deg); }
 .ziynat-order-page .designer-product-hardware { display: none; position: absolute; z-index: 3; width: 17px; height: 17px; border-radius: 50%; background: radial-gradient(circle at center,#383838 0 3px,#eeeeee 3.5px 6px,#8c8c8c 6.5px 8px); box-shadow: 0 1px 2px #0008, inset 1px 1px 2px #fff9; }
 .ziynat-order-page .designer-product-hardware.top-left { top: 9px; left: 9px; }
 .ziynat-order-page .designer-product-hardware.top-right { top: 9px; right: 9px; }
@@ -209,10 +215,8 @@
 .ziynat-order-page .designer-stage-area[data-product="banner"] .designer-3d-object { --depth: 6px; --edge-light: #dadada; --edge-dark: #7d8082; }
 .ziynat-order-page .designer-stage-area[data-product="banner"] .designer-product-face { border: 7px solid #e8e9e9; box-shadow: inset 0 0 0 1px #b9babc,0 1px 3px #0004; }
 .ziynat-order-page .designer-stage-area[data-product="banner"] .designer-product-face::before { background: linear-gradient(90deg,#0000001a 0 1%,transparent 3% 97%,#0000001a 99%),linear-gradient(115deg,#ffffff29,transparent 40%,#0000000b); }
-.ziynat-order-page .designer-stage-area[data-product="banner"] .designer-product-hardware { display: block; }
 .ziynat-order-page .designer-stage-area[data-product="banner_frame"] .designer-3d-object { --depth: 32px; --edge-light: #62666b; --edge-dark: #17191c; }
 .ziynat-order-page .designer-stage-area[data-product="banner_frame"] .designer-product-face { border: 11px solid #2c3034; box-shadow: inset 0 0 0 2px #898d90,0 0 0 2px #64696b; }
-.ziynat-order-page .designer-stage-area[data-product="banner_frame"] .designer-product-hardware { display: block; width: 12px; height: 12px; background: radial-gradient(circle,#555 0 2px,#b3b3b3 2.5px 4px,#232323 4.5px); }
 .ziynat-order-page .designer-stage-area[data-product="banner_frame"] .designer-product-back { background: repeating-linear-gradient(45deg,#202327,#202327 6px,#2a2d31 6px,#2a2d31 12px); border-color: #111; }
 .ziynat-order-page .designer-stage-area[data-product="sign"] .designer-3d-object { --depth: 14px; --edge-light: #eef0f0; --edge-dark: #8b9295; }
 .ziynat-order-page .designer-stage-area[data-product="sign"] .designer-product-face { border: 5px solid #d4d8d9; box-shadow: 0 0 0 1px #fff, inset 0 0 18px #aaa5; }
