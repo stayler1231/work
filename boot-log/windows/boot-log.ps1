@@ -34,7 +34,7 @@ function Protect-CsvText([string]$value) {
 $form = New-Object Windows.Forms.Form
 $form.Text = 'Журнал запусков ПК'
 $form.ClientSize = New-Object Drawing.Size(950, 620)
-$form.MinimumSize = New-Object Drawing.Size(700, 440)
+$form.MinimumSize = New-Object Drawing.Size(830, 440)
 $form.StartPosition = 'CenterScreen'
 $form.AutoScaleMode = 'Dpi'
 
@@ -58,7 +58,57 @@ $export = New-Object Windows.Forms.Button
 $export.Text = 'Сохранить CSV'
 $export.AutoSize = $true
 $export.Enabled = $false
-$toolbar.Controls.AddRange(@($periodLabel, $period, $refresh, $export))
+$startupFolder = [Environment]::GetFolderPath([Environment+SpecialFolder]::Startup)
+$startupLink = Join-Path $startupFolder 'BootLog Camera.lnk'
+$photoFolder = Join-Path $env:LOCALAPPDATA 'BootLog\Photos'
+
+$camera = New-Object Windows.Forms.Button
+$camera.AutoSize = $true
+function Update-CameraButton {
+    $camera.Text = if (Test-Path -LiteralPath $startupLink) {
+        'Выключить съёмку при входе'
+    } else { 'Включить съёмку при входе' }
+}
+Update-CameraButton
+$camera.Add_Click({
+    try {
+        if (Test-Path -LiteralPath $startupLink) {
+            Remove-Item -LiteralPath $startupLink
+        } else {
+            $answer = [Windows.Forms.MessageBox]::Show(
+                $form,
+                'При входе в эту учётную запись BootLog покажет предупреждение и через 5 секунд сделает один снимок. Снимок можно отменить. Фотографии хранятся на этом ПК. Включить?',
+                'Съёмка при входе', 'YesNo', 'Question'
+            )
+            if ($answer -ne [Windows.Forms.DialogResult]::Yes) { return }
+            if (-not [IO.File]::Exists($env:BOOTLOG_EXECUTABLE)) {
+                throw 'Запустите настройки из BootLog.exe.'
+            }
+            $shell = New-Object -ComObject WScript.Shell
+            $link = $shell.CreateShortcut($startupLink)
+            $link.TargetPath = $env:BOOTLOG_EXECUTABLE
+            $link.Arguments = '--capture-at-sign-in'
+            $link.WorkingDirectory = [IO.Path]::GetDirectoryName($env:BOOTLOG_EXECUTABLE)
+            $link.Save()
+        }
+        Update-CameraButton
+    } catch {
+        [void][Windows.Forms.MessageBox]::Show($form, $_.Exception.Message, 'Ошибка настройки съёмки')
+    }
+})
+
+$photos = New-Object Windows.Forms.Button
+$photos.Text = 'Открыть снимки'
+$photos.AutoSize = $true
+$photos.Add_Click({
+    try {
+        [void][IO.Directory]::CreateDirectory($photoFolder)
+        Invoke-Item -LiteralPath $photoFolder
+    } catch {
+        [void][Windows.Forms.MessageBox]::Show($form, $_.Exception.Message, 'Ошибка открытия папки')
+    }
+})
+$toolbar.Controls.AddRange(@($periodLabel, $period, $refresh, $export, $camera, $photos))
 
 $grid = New-Object Windows.Forms.DataGridView
 $grid.Dock = 'Fill'

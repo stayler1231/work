@@ -16,8 +16,15 @@ import (
 //go:embed boot-log.ps1
 var interfaceScript string
 
+//go:embed capture.ps1
+var captureScript string
+
 func main() {
-	words := utf16.Encode([]rune(interfaceScript))
+	script := interfaceScript
+	if len(os.Args) == 2 && os.Args[1] == "--capture-at-sign-in" {
+		script = captureScript
+	}
+	words := utf16.Encode([]rune(script))
 	data := make([]byte, 2*len(words))
 	for i, word := range words {
 		binary.LittleEndian.PutUint16(data[i*2:], word)
@@ -25,6 +32,9 @@ func main() {
 	encoded := base64.StdEncoding.EncodeToString(data)
 	powerShell := filepath.Join(os.Getenv("SystemRoot"), "System32", "WindowsPowerShell", "v1.0", "powershell.exe")
 	command := exec.Command(powerShell, "-NoLogo", "-NoProfile", "-STA", "-EncodedCommand", encoded)
+	if executable, err := os.Executable(); err == nil {
+		command.Env = append(os.Environ(), "BOOTLOG_EXECUTABLE="+executable)
+	}
 	command.SysProcAttr = &syscall.SysProcAttr{CreationFlags: 0x08000000} // CREATE_NO_WINDOW
 	if err := command.Run(); err != nil {
 		title, _ := syscall.UTF16PtrFromString("Журнал запусков ПК")
