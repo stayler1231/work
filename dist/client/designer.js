@@ -4,7 +4,9 @@
   const $$ = selector => [...document.querySelectorAll(selector)];
   const canvas = $('#designer-canvas');
   const context = canvas.getContext('2d');
-  const resizeHandles = ['#designer-resize-width','#designer-resize-height','#designer-resize-both'].map(selector => $(selector));
+  const inlineText = $('#designer-inline-text');
+  const resizeHandles = $$('.designer-canvas-handle');
+  const sizeLabels = {width:$('#designer-size-width'),height:$('#designer-size-height')};
   const preview = $('#designer-preview-canvas');
   const previewContext = preview.getContext('2d');
   const stageArea = $('.designer-stage-area');
@@ -18,9 +20,14 @@
     custom:{type:'custom',title:'',template:true}
   };
   const editorCopy = {
-    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',resetView:'Сбросить вид',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',resizeNote:'Перетащите элемент или потяните за маркеры справа и снизу, чтобы изменить размер всего макета.',resizeWidth:'Изменить ширину макета',resizeHeight:'Изменить высоту макета',resizeBoth:'Изменить ширину и высоту макета',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
-    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',resetView:'Ko‘rinishni tiklash',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',resizeNote:'Elementni suring yoki maketning eni va bo‘yini o‘zgartirish uchun yon va pastki tutqichlarni torting.',resizeWidth:'Maket enini o‘zgartirish',resizeHeight:'Maket bo‘yini o‘zgartirish',resizeBoth:'Maket eni va bo‘yini o‘zgartirish',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
-    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',resetView:'Reset view',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',resizeNote:'Drag an element, or pull the right and bottom handles to resize the whole mockup.',resizeWidth:'Resize mockup width',resizeHeight:'Resize mockup height',resizeBoth:'Resize mockup width and height',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
+    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',toolDelete:'Удалить',newText:'Ваш текст',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',resetView:'Сбросить вид',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',resizeNote:'Перетащите элемент или потяните за маркеры с любой стороны, чтобы изменить размер всего макета.',resizeWidth:'Изменить ширину макета',resizeHeight:'Изменить высоту макета',resizeBoth:'Изменить ширину и высоту макета',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
+    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',toolDelete:'O‘chirish',newText:'Matningiz',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',resetView:'Ko‘rinishni tiklash',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',resizeNote:'Elementni suring yoki maketning eni va bo‘yini o‘zgartirish uchun istalgan tomondagi tutqichlarni torting.',resizeWidth:'Maket enini o‘zgartirish',resizeHeight:'Maket bo‘yini o‘zgartirish',resizeBoth:'Maket eni va bo‘yini o‘zgartirish',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
+    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',toolDelete:'Delete',newText:'Your text',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',resetView:'Reset view',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',resizeNote:'Drag an element, or pull a handle on any side to resize the whole mockup.',resizeWidth:'Resize mockup width',resizeHeight:'Resize mockup height',resizeBoth:'Resize mockup width and height',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
+  };
+  const dimensionCopy = {
+    ru:{width:'Ширина',height:'Высота',unit:'усл. ед.',m:'м',cm:'см',edges:{top:'Изменить высоту сверху',right:'Изменить ширину справа',bottom:'Изменить высоту снизу',left:'Изменить ширину слева','top-left':'Изменить размер сверху слева','top-right':'Изменить размер сверху справа','bottom-right':'Изменить размер снизу справа','bottom-left':'Изменить размер снизу слева'}},
+    uz:{width:'Eni',height:'Bo‘yi',unit:'shartli birlik',m:'m',cm:'sm',edges:{top:'Bo‘yini yuqoridan o‘zgartirish',right:'Enini o‘ngdan o‘zgartirish',bottom:'Bo‘yini pastdan o‘zgartirish',left:'Enini chapdan o‘zgartirish','top-left':'O‘lchamni yuqori chapdan o‘zgartirish','top-right':'O‘lchamni yuqori o‘ngdan o‘zgartirish','bottom-right':'O‘lchamni pastki o‘ngdan o‘zgartirish','bottom-left':'O‘lchamni pastki chapdan o‘zgartirish'}},
+    en:{width:'Width',height:'Height',unit:'units',m:'m',cm:'cm',edges:{top:'Resize height from top',right:'Resize width from right',bottom:'Resize height from bottom',left:'Resize width from left','top-left':'Resize from top left','top-right':'Resize from top right','bottom-right':'Resize from bottom right','bottom-left':'Resize from bottom left'}}
   };
   let items = [];
   let activeItem = null;
@@ -131,23 +138,59 @@
     }
     if (stageArea.classList.contains('is-3d')) requestAnimationFrame(fit3dObject);
     else requestAnimationFrame(positionResizeHandles);
+    if (!inlineText.hidden) requestAnimationFrame(positionInlineText);
     document.dispatchEvent(new Event('colourway:designer-change'));
+  }
+  function positionInlineText() {
+    if (inlineText.hidden || !activeItem) return;
+    const element = model(activeItem).elements[selected];
+    if (element?.kind !== 'text') {inlineText.hidden = true; return;}
+    const rect = canvas.getBoundingClientRect();
+    const stage = canvas.parentElement.getBoundingClientRect();
+    inlineText.style.left = `${rect.left - stage.left + rect.width * element.x}px`;
+    inlineText.style.top = `${rect.top - stage.top + rect.height * element.y}px`;
+    inlineText.style.width = `${Math.min(320,Math.max(110,rect.width * .75))}px`;
+    inlineText.style.fontSize = `${Math.min(50,Math.max(16,element.size * rect.width / canvas.width))}px`;
+    inlineText.style.color = element.color;
+  }
+  function showInlineText() {
+    const element = activeItem && model(activeItem).elements[selected];
+    if (element?.kind !== 'text') return;
+    inlineText.value = element.text;
+    inlineText.hidden = false;
+    positionInlineText();
+    inlineText.focus(); inlineText.select();
   }
   function positionResizeHandles() {
     if (!activeItem || !canResizeMockup(activeItem) || stageArea.classList.contains('is-3d')) return;
+    updateSizeLabels();
     const rect = canvas.getBoundingClientRect();
     const stage = canvas.parentElement.getBoundingClientRect();
-    const half = resizeHandles[0].offsetWidth / 2;
-    resizeHandles[0].style.left = `${rect.right - stage.left - half}px`;
-    resizeHandles[0].style.top = `${rect.top - stage.top + rect.height / 2 - half}px`;
-    resizeHandles[1].style.left = `${rect.left - stage.left + rect.width / 2 - half}px`;
-    resizeHandles[1].style.top = `${rect.bottom - stage.top - half}px`;
-    resizeHandles[2].style.left = `${rect.right - stage.left - half}px`;
-    resizeHandles[2].style.top = `${rect.bottom - stage.top - half}px`;
+    resizeHandles.forEach(handle => {
+      const edge = handle.dataset.resizeEdge;
+      const x = edge.includes('left') ? rect.left : edge.includes('right') ? rect.right : rect.left + rect.width / 2;
+      const y = edge.includes('top') ? rect.top : edge.includes('bottom') ? rect.bottom : rect.top + rect.height / 2;
+      handle.style.left = `${x - stage.left - handle.offsetWidth / 2}px`;
+      handle.style.top = `${y - stage.top - handle.offsetHeight / 2}px`;
+    });
+    sizeLabels.width.style.left = `${rect.left - stage.left + rect.width / 2 - sizeLabels.width.offsetWidth / 2}px`;
+    sizeLabels.width.style.top = `${rect.top - stage.top + 18}px`;
+    sizeLabels.height.style.left = `${rect.left - stage.left + 12}px`;
+    sizeLabels.height.style.top = `${rect.top - stage.top + rect.height / 2 - sizeLabels.height.offsetHeight / 2}px`;
+  }
+  function updateSizeLabels() {
+    if (!activeItem || !canResizeMockup(activeItem)) return;
+    const size = mockupSize(activeItem);
+    const copy = dimensionCopy[language];
+    const unit = isBanner(activeItem) ? copy[activeItem.template ? $('#order-dimension-unit').value : activeItem.unit || 'm'] : copy.unit;
+    const format = new Intl.NumberFormat({ru:'ru-RU',uz:'uz-UZ',en:'en-US'}[language],{maximumFractionDigits:2});
+    sizeLabels.width.textContent = `${copy.width}: ${format.format(size.width)} ${unit}`;
+    sizeLabels.height.textContent = `${copy.height}: ${format.format(size.height)} ${unit}`;
   }
   function updateResizeHandles() {
     const visible = canResizeMockup(activeItem) && !stageArea.classList.contains('is-3d');
     resizeHandles.forEach(handle => {handle.hidden = !visible;});
+    Object.values(sizeLabels).forEach(label => {label.hidden = !visible;});
     if (visible) requestAnimationFrame(positionResizeHandles);
   }
   function layerName(element, index) {
@@ -186,7 +229,6 @@
     if (!activeItem) return;
     $('#designer-bg').value = model(activeItem).background;
     const element = model(activeItem).elements[selected];
-    $('#designer-edit-text').disabled = element?.kind !== 'text';
     $('#designer-delete').disabled = !element;
     const selectedDrawing = element?.kind === 'draw';
     $('#designer-brush-control').hidden = !drawingTool && !selectedDrawing;
@@ -206,6 +248,7 @@
     }
   }
   function selectItem(item) {
+    inlineText.hidden = true;
     activeItem = item;
     selected = -1;
     dragging = null;
@@ -251,7 +294,7 @@
     const nextItem = chooseLast && index >= 0 ? items[index] : items.includes(activeItem) || Object.values(templateDrafts).includes(activeItem) ? activeItem : freeDraft;
     selectItem(nextItem);
     $$('[data-designer-copy]').forEach(node => {node.textContent = editorCopy[language][node.dataset.designerCopy];});
-    resizeHandles.forEach((handle,index) => handle.setAttribute('aria-label',editorCopy[language][['resizeWidth','resizeHeight','resizeBoth'][index]]));
+    resizeHandles.forEach(handle => handle.setAttribute('aria-label',dimensionCopy[language].edges[handle.dataset.resizeEdge]));
     setView(stageArea.classList.contains('is-3d') ? '3d' : '2d');
   }
   $('#designer-item').addEventListener('change', event => {
@@ -282,6 +325,7 @@
     if (draft === activeItem) render();
   }
   ['#order-width','#order-height','#order-size'].forEach(selector => $(selector).addEventListener('input',syncTemplateDimensions));
+  $('#order-dimension-unit').addEventListener('change', () => queueMicrotask(() => {syncTemplateDimensions(); updateSizeLabels();}));
   function mockupSize(item) {
     if (isBanner(item) && item.template) return {width:Number($('#order-width').value) || item.width,height:Number($('#order-height').value) || item.height};
     return isBanner(item) ? {width:item.width,height:item.height} : {width:item.previewWidth || 3,height:item.previewHeight || 2};
@@ -310,7 +354,10 @@
       render();
     }
   }
-  resizeHandles.forEach((handle,index) => {
+  resizeHandles.forEach(handle => {
+    const edge = handle.dataset.resizeEdge;
+    const horizontalSign = edge.includes('left') ? -1 : edge.includes('right') ? 1 : 0;
+    const verticalSign = edge.includes('top') ? -1 : edge.includes('bottom') ? 1 : 0;
     let resizing = null;
     handle.addEventListener('pointerdown', event => {
       if (!activeItem || !canResizeMockup(activeItem)) return;
@@ -322,8 +369,8 @@
     });
     handle.addEventListener('pointermove', event => {
       if (!resizing || resizing.pointerId !== event.pointerId) return;
-      const width = index === 1 ? resizing.width : resizing.width * (1 + (event.clientX - resizing.x) / Math.max(50,resizing.screenWidth));
-      const height = index === 0 ? resizing.height : resizing.height * (1 + (event.clientY - resizing.y) / Math.max(50,resizing.screenHeight));
+      const width = horizontalSign ? resizing.width * (1 + horizontalSign * (event.clientX - resizing.x) / Math.max(50,resizing.screenWidth)) : resizing.width;
+      const height = verticalSign ? resizing.height * (1 + verticalSign * (event.clientY - resizing.y) / Math.max(50,resizing.screenHeight)) : resizing.height;
       resizeMockup(width,height);
     });
     const stop = () => {resizing = null;};
@@ -333,11 +380,11 @@
     handle.addEventListener('keydown', event => {
       const horizontal = ['ArrowLeft','ArrowRight'].includes(event.key);
       const vertical = ['ArrowUp','ArrowDown'].includes(event.key);
-      if (!horizontal && !vertical || horizontal && index === 1 || vertical && index === 0) return;
+      if (!horizontal && !vertical || horizontal && !horizontalSign || vertical && !verticalSign) return;
       event.preventDefault();
       const size = mockupSize(activeItem);
       const step = isBanner(activeItem) && (activeItem.unit || $('#order-dimension-unit').value) === 'cm' ? (event.shiftKey ? 10 : 1) : event.shiftKey ? .25 : .05;
-      resizeMockup(size.width + (horizontal ? event.key === 'ArrowRight' ? step : -step : 0),size.height + (vertical ? event.key === 'ArrowDown' ? step : -step : 0));
+      resizeMockup(size.width + (horizontal ? horizontalSign * (event.key === 'ArrowRight' ? step : -step) : 0),size.height + (vertical ? verticalSign * (event.key === 'ArrowDown' ? step : -step) : 0));
     });
   });
   new ResizeObserver(() => requestAnimationFrame(positionResizeHandles)).observe(canvas.parentElement);
@@ -355,9 +402,13 @@
     if (tool === 'draw') {setDrawingTool(!drawingTool); return;}
     setDrawingTool(false);
     if (tool === 'select') {canvas.focus(); return;}
-    if (tool === 'text') {$('#designer-text').focus(); return;}
+    if (tool === 'text') {addText(); return;}
     if (tool === 'image') {$('#designer-image').click(); return;}
-    $('#designer-add-rect').click();
+    if (tool === 'shapes') {
+      const options = $('#designer-shape-options');
+      options.hidden = !options.hidden;
+      button.setAttribute('aria-expanded',String(!options.hidden));
+    }
   }));
   function setView(mode) {
     stageArea.classList.toggle('is-3d',mode === '3d');
@@ -405,23 +456,35 @@
   scene.addEventListener('pointercancel',stopRotating);
   scene.addEventListener('lostpointercapture',stopRotating);
   $('#designer-bg').addEventListener('input', event => { if (!activeItem) return; model(activeItem).background = event.target.value; model(activeItem).touched = true; render(); });
-  $('#designer-add-text').addEventListener('click', () => {
+  function addText() {
     if (!activeItem) return;
-    const text = $('#designer-text').value.trim();
-    if (!text) { error(errors[language].text); $('#designer-text').focus(); return; }
     const design = model(activeItem);
     if (design.elements.length >= maxElements) {error(errors[language].limit); return;}
+    const text = design.elements[selected]?.kind === 'text' ? editorCopy[language].newText : $('#designer-text').value.trim() || editorCopy[language].newText;
     const offset = design.elements.length % 6;
     design.elements.push({kind:'text',text,color:$('#designer-text-color').value,size:Number($('#designer-size').value),x:.5,y:Math.min(.82,.32 + offset * .1)});
     selected = design.elements.length - 1;
     design.touched = true; error(); syncControls(); render(); renderLayers();
-  });
-  $('#designer-edit-text').addEventListener('click', () => {
+    showInlineText();
+  }
+  inlineText.addEventListener('input', event => {
     const element = activeItem && model(activeItem).elements[selected];
     if (element?.kind !== 'text') return;
-    const value = $('#designer-text').value.trim();
-    if (!value) {error(errors[language].text); $('#designer-text').focus(); return;}
-    element.text = value; model(activeItem).touched = true; error(); render(); renderLayers();
+    element.text = event.target.value;
+    $('#designer-text').value = event.target.value;
+    model(activeItem).touched = true;
+    render(); renderLayers();
+  });
+  inlineText.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === 'Escape') {event.preventDefault(); inlineText.blur();}
+  });
+  inlineText.addEventListener('blur', () => {inlineText.hidden = true;});
+  canvas.addEventListener('dblclick', () => {if (model(activeItem).elements[selected]?.kind === 'text') showInlineText();});
+  $('#designer-text').addEventListener('input', event => {
+    const element = activeItem && model(activeItem).elements[selected];
+    if (element?.kind !== 'text') return;
+    element.text = event.target.value;
+    model(activeItem).touched = true; error(); render(); renderLayers();
   });
   function addShape(kind) {
     if (!activeItem) return;

@@ -155,6 +155,12 @@
 .ziynat-order-page .designer-quick-tools button { display: flex; align-items: center; gap: 10px; min-height: 39px; padding: 6px 9px; border: 1px solid #ddd; border-radius: 9px; background: #fff; color: #333; font: 500 12px Geometria,Arial,sans-serif; text-align: left; cursor: pointer; }
 .ziynat-order-page .designer-quick-tools button:hover { border-color: #991427; color: #991427; }
 .ziynat-order-page .designer-quick-tools button span:first-child { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 5px; background: #efefef; font-size: 17px; }
+.ziynat-order-page .designer-quick-tools button:disabled { opacity: .45; cursor: default; }
+.ziynat-order-page .designer-quick-tools button:disabled:hover { border-color: #ddd; color: #333; }
+.ziynat-order-page .designer-shape-options { display: grid; gap: 6px; margin-top: 8px; }
+.ziynat-order-page .designer-shape-options[hidden] { display: none; }
+.ziynat-order-page .designer-shape-options button { min-height: 36px; padding: 7px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #333; font: 600 11px Geometria,Arial,sans-serif; cursor: pointer; }
+.ziynat-order-page .designer-shape-options button:hover { border-color: #991427; color: #991427; }
 .ziynat-order-page .designer-stage-area { display: flex; flex-direction: column; min-width: 0; background: radial-gradient(circle at 50% 35%, #fdfdfd, #e8e8e8 72%); }
 .ziynat-order-page .designer-stage-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 17px; border-bottom: 1px solid #dedede; color: #484848; font-size: 13px; font-weight: 700; }
 .ziynat-order-page .designer-view-switch { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid #dadada; border-radius: 999px; background: #fff; }
@@ -162,12 +168,17 @@
 .ziynat-order-page .designer-view-switch button[aria-pressed="true"] { background: #991427; color: #fff; }
 .ziynat-order-page .designer-stage { position: relative; flex: 1; min-height: 310px; padding: clamp(16px,3vw,32px); border: 0; border-radius: 0; background: transparent; overflow: hidden; }
 .ziynat-order-page .designer-stage #designer-canvas { max-height: min(68dvh,650px); border: 1px solid #d1d1d1; border-radius: 3px; box-shadow: 0 16px 35px #24242427; }
+.ziynat-order-page .designer-inline-text { position: absolute; z-index: 6; width: 220px; max-width: 80%; padding: 6px 9px; border: 2px solid #991427; border-radius: 6px; background: #fffffff2; color: #991427; font: 700 20px Geometria,Arial,sans-serif; text-align: center; box-shadow: 0 5px 18px #24242436; transform: translate(-50%,-50%); }
+.ziynat-order-page .designer-inline-text[hidden] { display: none; }
 .ziynat-order-page .designer-canvas-handle { position: absolute; z-index: 5; width: 22px; height: 22px; border: 3px solid #fff; border-radius: 7px; background: #991427; box-shadow: 0 2px 9px #2424245c; touch-action: none; }
 .ziynat-order-page .designer-canvas-handle[hidden],.ziynat-order-page .designer-stage-area.is-3d .designer-canvas-handle { display: none!important; }
 .ziynat-order-page .designer-canvas-handle.handle-width { cursor: ew-resize; }
 .ziynat-order-page .designer-canvas-handle.handle-height { cursor: ns-resize; }
 .ziynat-order-page .designer-canvas-handle.handle-corner { cursor: nwse-resize; }
+.ziynat-order-page .designer-canvas-handle[data-resize-edge="top-right"],.ziynat-order-page .designer-canvas-handle[data-resize-edge="bottom-left"] { cursor: nesw-resize; }
 .ziynat-order-page .designer-canvas-handle:focus-visible { outline: 3px solid #991427; outline-offset: 3px; }
+.ziynat-order-page .designer-size-label { position: absolute; z-index: 4; padding: 5px 8px; border: 1px solid #e7d7d9; border-radius: 6px; background: #fffffff0; box-shadow: 0 2px 8px #2424241c; color: #991427; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; pointer-events: none; }
+.ziynat-order-page .designer-size-label[hidden],.ziynat-order-page .designer-stage-area.is-3d .designer-size-label { display: none!important; }
 .ziynat-order-page .designer-stage-note { margin: 0; padding: 12px 18px; border-top: 1px solid #dedede; color: #666; font-size: 11px; line-height: 1.4; }
 .ziynat-order-page .designer-inspector { min-width: 0; padding: 18px; background: #fff; }
 .ziynat-order-page .designer-controls { position: relative; }
@@ -248,6 +259,7 @@
   .ziynat-order-page .designer-quick-tools { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .ziynat-order-page .designer-quick-tools button { justify-content: center; }
   .ziynat-order-page .designer-quick-tools button span:first-child { display: none; }
+  .ziynat-order-page .designer-shape-options { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .ziynat-order-page .designer-stage { min-height: 240px; }
   .ziynat-order-page .designer-inspector { border-top: 1px solid #dedede; }
 }

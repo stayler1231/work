@@ -88,17 +88,31 @@
                   <button type="button" data-designer-tool="select" aria-pressed="true"><span aria-hidden="true">↖</span><span data-designer-copy="toolSelect">Выбрать</span></button>
                   <button type="button" data-designer-tool="text"><span aria-hidden="true">T</span><span data-designer-copy="toolText">Текст</span></button>
                   <button type="button" data-designer-tool="image"><span aria-hidden="true">▧</span><span data-designer-copy="toolImage">Фото</span></button>
-                  <button type="button" data-designer-tool="rect"><span aria-hidden="true">▭</span><span data-designer-copy="toolShapes">Фигуры</span></button>
+                  <button type="button" data-designer-tool="shapes" aria-expanded="false" aria-controls="designer-shape-options"><span aria-hidden="true">▭</span><span data-designer-copy="toolShapes">Фигуры</span></button>
                   <button type="button" data-designer-tool="draw" aria-pressed="false"><span aria-hidden="true">✎</span><span data-designer-copy="toolDraw">Рисовать</span></button>
+                  <button type="button" id="designer-delete" disabled><span aria-hidden="true">⌫</span><span data-designer-copy="toolDelete">Удалить</span></button>
                 </div>
+                <div class="designer-shape-options" id="designer-shape-options" hidden>
+                  <button type="button" id="designer-add-rect" data-i18n="designerAddRect">Прямоугольник</button>
+                  <button type="button" id="designer-add-circle" data-i18n="designerAddCircle">Круг</button>
+                </div>
+                <input id="designer-image" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
               </aside>
               <div class="designer-stage-area" data-product="free">
                 <div class="designer-stage-top"><span data-designer-copy="stageTitle">Ваш макет</span><div class="designer-stage-actions"><button type="button" id="designer-reset-3d" data-designer-copy="resetView" hidden>Сбросить вид</button><div class="designer-view-switch" role="group" aria-label="Режим просмотра"><button type="button" id="designer-view-2d" aria-pressed="true">2D</button><button type="button" id="designer-view-3d" aria-pressed="false">3D</button></div></div></div>
                 <div class="designer-stage">
                   <canvas id="designer-canvas" width="1000" height="600" tabindex="0" aria-label="Интерактивный холст макета" data-aria-i18n="designerCanvas"></canvas>
-                  <button type="button" class="designer-canvas-handle handle-width" id="designer-resize-width" aria-label="Изменить ширину макета"></button>
-                  <button type="button" class="designer-canvas-handle handle-height" id="designer-resize-height" aria-label="Изменить высоту макета"></button>
-                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-both" aria-label="Изменить ширину и высоту макета"></button>
+                  <input id="designer-inline-text" class="designer-inline-text" type="text" maxlength="60" autocomplete="off" data-aria-i18n="designerEditText" aria-label="Изменить текст" hidden>
+                  <button type="button" class="designer-canvas-handle handle-height" id="designer-resize-top" data-resize-edge="top" aria-label="Изменить высоту сверху"></button>
+                  <button type="button" class="designer-canvas-handle handle-width" id="designer-resize-width" data-resize-edge="right" aria-label="Изменить ширину справа"></button>
+                  <button type="button" class="designer-canvas-handle handle-height" id="designer-resize-height" data-resize-edge="bottom" aria-label="Изменить высоту снизу"></button>
+                  <button type="button" class="designer-canvas-handle handle-width" id="designer-resize-left" data-resize-edge="left" aria-label="Изменить ширину слева"></button>
+                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-top-left" data-resize-edge="top-left" aria-label="Изменить размер сверху слева"></button>
+                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-top-right" data-resize-edge="top-right" aria-label="Изменить размер сверху справа"></button>
+                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-both" data-resize-edge="bottom-right" aria-label="Изменить размер снизу справа"></button>
+                  <button type="button" class="designer-canvas-handle handle-corner" id="designer-resize-bottom-left" data-resize-edge="bottom-left" aria-label="Изменить размер снизу слева"></button>
+                  <span class="designer-size-label designer-size-width" id="designer-size-width" hidden></span>
+                  <span class="designer-size-label designer-size-height" id="designer-size-height" hidden></span>
                   <div class="designer-3d-scene" aria-hidden="true">
                     <div class="designer-3d-object">
                       <div class="designer-product-back"></div>
@@ -137,15 +151,6 @@
                     <label for="designer-brush-size"><span data-designer-copy="brushSize">Толщина кисти</span> <output id="designer-brush-value" for="designer-brush-size">8 px</output></label>
                     <input id="designer-brush-size" type="range" min="2" max="40" value="8">
                   </div>
-                </div>
-                <div class="designer-actions">
-                  <button type="button" class="button button-outline" id="designer-add-text" data-i18n="designerAddText">Добавить ещё текст</button>
-                  <button type="button" class="designer-edit" id="designer-edit-text" data-i18n="designerEditText" disabled>Изменить текст</button>
-                  <label class="designer-file-button" for="designer-image" data-i18n="designerAddImage">Добавить своё фото</label>
-                  <input id="designer-image" type="file" accept="image/jpeg,image/png,image/webp" multiple>
-                  <button type="button" class="designer-shape" id="designer-add-rect" data-i18n="designerAddRect">Прямоугольник</button>
-                  <button type="button" class="designer-shape" id="designer-add-circle" data-i18n="designerAddCircle">Круг</button>
-                  <button type="button" class="designer-delete" id="designer-delete" data-i18n="designerDelete">Удалить элемент</button>
                 </div>
                 <p class="order-field-error" id="designer-error" role="alert" aria-live="polite"></p>
               </div>
