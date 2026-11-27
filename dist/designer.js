@@ -17,9 +17,9 @@
     custom:{type:'custom',title:'',template:true}
   };
   const editorCopy = {
-    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
-    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
-    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
+    ru:{templates:'Варианты изделий',orderSpecs:'Параметры изделия',tools:'Инструменты',free:'Свободный макет',banner:'Баннер',banner_frame:'Баннер на каркасе',sign:'Табличка',badge:'Бейдж',custom:'Свой формат',toolSelect:'Выбрать',toolText:'Текст',toolImage:'Фото',toolShapes:'Фигуры',toolDraw:'Рисовать',brushSize:'Толщина кисти',drawNote:'Рисуйте на холсте мышью или пальцем. Толщину задайте в настройках.',stageTitle:'Ваш макет',resetView:'Сбросить вид',properties:'Настройки макета',editNote:'Перетащите элемент на макете, чтобы изменить его положение.',previewNote:'Перетащите изделие, чтобы повернуть. Для редактирования элементов переключитесь на 2D.'},
+    uz:{templates:'Mahsulot turlari',orderSpecs:'Mahsulot parametrlari',tools:'Asboblar',free:'Erkin maket',banner:'Banner',banner_frame:'Karkasli banner',sign:'Lavha',badge:'Beyjik',custom:'O‘z o‘lchamingiz',toolSelect:'Tanlash',toolText:'Matn',toolImage:'Rasm',toolShapes:'Shakllar',toolDraw:'Chizish',brushSize:'Cho‘tka qalinligi',drawNote:'Maketda sichqoncha yoki barmoq bilan chizing. Qalinlikni sozlamalarda tanlang.',stageTitle:'Maketingiz',resetView:'Ko‘rinishni tiklash',properties:'Maket sozlamalari',editNote:'Elementni ko‘chirish uchun maketda suring.',previewNote:'Mahsulotni aylantirish uchun suring. Elementlarni tahrirlash uchun 2D ga o‘ting.'},
+    en:{templates:'Product options',orderSpecs:'Product details',tools:'Tools',free:'Freeform mockup',banner:'Banner',banner_frame:'Framed banner',sign:'Sign',badge:'Name badge',custom:'Custom format',toolSelect:'Select',toolText:'Text',toolImage:'Image',toolShapes:'Shapes',toolDraw:'Draw',brushSize:'Brush thickness',drawNote:'Draw on the canvas with a mouse or finger. Set thickness in the controls.',stageTitle:'Your mockup',resetView:'Reset view',properties:'Design settings',editNote:'Drag an element on the mockup to move it.',previewNote:'Drag to rotate the product. Switch to 2D to edit elements.'}
   };
   let items = [];
   let activeItem = null;
@@ -126,6 +126,7 @@
       preview.width = size.width; preview.height = size.height;
       paint(previewContext, activeItem, size.width, size.height);
     }
+    if (stageArea.classList.contains('is-3d')) requestAnimationFrame(fit3dObject);
     document.dispatchEvent(new Event('colourway:designer-change'));
   }
   function layerName(element, index) {
@@ -280,28 +281,46 @@
     stageArea.classList.toggle('is-3d',mode === '3d');
     $('#designer-view-2d').setAttribute('aria-pressed',String(mode === '2d'));
     $('#designer-view-3d').setAttribute('aria-pressed',String(mode === '3d'));
+    $('#designer-reset-3d').hidden = mode !== '3d';
     $('.designer-stage-note').textContent = editorCopy[language][mode === '3d' ? 'previewNote' : drawingTool ? 'drawNote' : 'editNote'];
+    if (mode === '3d') requestAnimationFrame(fit3dObject);
   }
   $('#designer-view-2d').addEventListener('click',() => setView('2d'));
   $('#designer-view-3d').addEventListener('click',() => setView('3d'));
   const scene = $('.designer-3d-scene');
   const object3d = $('.designer-3d-object');
-  let rotation = {x:5,y:-13};
+  function fit3dObject() {
+    if (!activeItem || !stageArea.classList.contains('is-3d') || !scene.clientWidth) return;
+    const maxWidth = activeItem.type === 'badge' ? 350 : activeItem.type === 'sign' ? 460 : 580;
+    const width = Math.max(110,Math.min(scene.clientWidth * .82,(scene.clientHeight - 50) * ratio(activeItem),maxWidth));
+    object3d.style.width = `${width}px`;
+  }
+  new ResizeObserver(fit3dObject).observe(scene);
+  let rotation = {x:8,y:-20};
   let rotating = null;
+  function updateRotation() {
+    object3d.style.setProperty('--turn-y',`${rotation.y}deg`);
+    object3d.style.setProperty('--turn-x',`${rotation.x}deg`);
+    object3d.style.setProperty('--sheen-shift',`${Math.sin(rotation.y * Math.PI / 180) * 35}%`);
+  }
+  $('#designer-reset-3d').addEventListener('click', () => {rotation = {x:8,y:-20}; updateRotation();});
   scene.addEventListener('pointerdown', event => {
-    if (!stageArea.classList.contains('is-3d')) return;
+    if (!stageArea.classList.contains('is-3d') || event.pointerType === 'mouse' && event.button !== 0) return;
+    event.preventDefault();
     rotating = {pointerId:event.pointerId,x:event.clientX,y:event.clientY,rotationX:rotation.x,rotationY:rotation.y};
+    scene.classList.add('is-rotating');
     scene.setPointerCapture(event.pointerId);
   });
   scene.addEventListener('pointermove', event => {
     if (!rotating || rotating.pointerId !== event.pointerId) return;
-    rotation.y = Math.max(-34,Math.min(34,rotating.rotationY + (event.clientX - rotating.x) * .18));
-    rotation.x = Math.max(-18,Math.min(18,rotating.rotationX - (event.clientY - rotating.y) * .12));
-    object3d.style.setProperty('--turn-y',`${rotation.y}deg`);
-    object3d.style.setProperty('--turn-x',`${rotation.x}deg`);
+    rotation.y = rotating.rotationY + (event.clientX - rotating.x) * .65;
+    rotation.x = Math.max(-55,Math.min(55,rotating.rotationX - (event.clientY - rotating.y) * .3));
+    updateRotation();
   });
-  scene.addEventListener('pointerup',() => {rotating = null;});
-  scene.addEventListener('pointercancel',() => {rotating = null;});
+  const stopRotating = () => {rotating = null; scene.classList.remove('is-rotating');};
+  scene.addEventListener('pointerup',stopRotating);
+  scene.addEventListener('pointercancel',stopRotating);
+  scene.addEventListener('lostpointercapture',stopRotating);
   $('#designer-bg').addEventListener('input', event => { if (!activeItem) return; model(activeItem).background = event.target.value; model(activeItem).touched = true; render(); });
   $('#designer-add-text').addEventListener('click', () => {
     if (!activeItem) return;

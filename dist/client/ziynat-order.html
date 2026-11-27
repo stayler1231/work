@@ -95,10 +95,21 @@
                 </div>
               </aside>
               <div class="designer-stage-area" data-product="free">
-                <div class="designer-stage-top"><span data-designer-copy="stageTitle">Ваш макет</span><div class="designer-view-switch" role="group" aria-label="Режим просмотра"><button type="button" id="designer-view-2d" aria-pressed="true">2D</button><button type="button" id="designer-view-3d" aria-pressed="false">3D</button></div></div>
+                <div class="designer-stage-top"><span data-designer-copy="stageTitle">Ваш макет</span><div class="designer-stage-actions"><button type="button" id="designer-reset-3d" data-designer-copy="resetView" hidden>Сбросить вид</button><div class="designer-view-switch" role="group" aria-label="Режим просмотра"><button type="button" id="designer-view-2d" aria-pressed="true">2D</button><button type="button" id="designer-view-3d" aria-pressed="false">3D</button></div></div></div>
                 <div class="designer-stage">
                   <canvas id="designer-canvas" width="1000" height="600" tabindex="0" aria-label="Интерактивный холст макета" data-aria-i18n="designerCanvas"></canvas>
-                  <div class="designer-3d-scene" aria-hidden="true"><div class="designer-3d-object"><div class="designer-product-face"><canvas id="designer-preview-canvas" width="1000" height="600"></canvas></div></div><div class="designer-3d-shadow"></div></div>
+                  <div class="designer-3d-scene" aria-hidden="true">
+                    <div class="designer-3d-object">
+                      <div class="designer-product-back"></div>
+                      <div class="designer-product-edge designer-product-edge-left"></div>
+                      <div class="designer-product-edge designer-product-edge-right"></div>
+                      <div class="designer-product-edge designer-product-edge-top"></div>
+                      <div class="designer-product-edge designer-product-edge-bottom"></div>
+                      <div class="designer-product-face"><canvas id="designer-preview-canvas" width="1000" height="600"></canvas><span class="designer-product-sheen"></span><span class="designer-product-hardware top-left"></span><span class="designer-product-hardware top-right"></span><span class="designer-product-hardware bottom-left"></span><span class="designer-product-hardware bottom-right"></span></div>
+                      <span class="designer-product-clip"></span>
+                    </div>
+                    <div class="designer-3d-shadow"></div>
+                  </div>
                 </div>
                 <p class="designer-stage-note" data-designer-copy="editNote">Перетащите элемент на макете, чтобы изменить его положение.</p>
               </div>
