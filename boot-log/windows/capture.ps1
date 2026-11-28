@@ -55,47 +55,29 @@ function Save-SignInPhoto {
 
 $form = New-Object Windows.Forms.Form
 $form.Text = 'BootLog — снимок при входе'
-$form.ClientSize = New-Object Drawing.Size(460, 105)
+$form.ClientSize = New-Object Drawing.Size(300, 60)
 $form.StartPosition = 'CenterScreen'
 $form.FormBorderStyle = 'FixedDialog'
 $form.MaximizeBox = $false
-$form.TopMost = $true
 $label = New-Object Windows.Forms.Label
-$label.SetBounds(14, 15, 430, 38)
+$label.Dock = 'Fill'
+$label.TextAlign = 'MiddleCenter'
+$label.Text = 'Съёмка с веб-камеры…'
 $form.Controls.Add($label)
-$cancel = New-Object Windows.Forms.Button
-$cancel.Text = 'Отменить'
-$cancel.SetBounds(340, 62, 105, 28)
-$cancel.Add_Click({ $form.Close() })
-$form.CancelButton = $cancel
-$form.Controls.Add($cancel)
-$timer = New-Object Windows.Forms.Timer
-$timer.Interval = 1000
-$script:seconds = 5
-$label.Text = "BootLog сделает снимок с веб-камеры через $script:seconds сек."
-$timer.Add_Tick({
-    $script:seconds--
-    if ($script:seconds -gt 0) {
-        $label.Text = "BootLog сделает снимок с веб-камеры через $script:seconds сек."
-        return
-    }
-    $timer.Stop()
-    $cancel.Enabled = $false
-    $label.Text = 'Съёмка…'
-    $label.Refresh()
+$form.Add_Shown({
+    $form.Refresh()
     try {
         Save-SignInPhoto
     } catch {
         [void][Windows.Forms.MessageBox]::Show(
             $form, $_.Exception.GetBaseException().Message, 'BootLog — снимок не сохранён'
         )
+    } finally {
+        $form.Close()
     }
-    $form.Close()
 })
-$form.Add_Shown({ $timer.Start() })
 try {
     [void]$form.ShowDialog()
 } finally {
-    $timer.Dispose()
     $form.Dispose()
 }

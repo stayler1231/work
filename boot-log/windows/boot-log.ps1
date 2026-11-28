@@ -75,12 +75,6 @@ $camera.Add_Click({
         if (Test-Path -LiteralPath $startupLink) {
             Remove-Item -LiteralPath $startupLink
         } else {
-            $answer = [Windows.Forms.MessageBox]::Show(
-                $form,
-                'При входе в эту учётную запись BootLog покажет предупреждение и через 5 секунд сделает один снимок. Снимок можно отменить. Фотографии хранятся на этом ПК. Включить?',
-                'Съёмка при входе', 'YesNo', 'Question'
-            )
-            if ($answer -ne [Windows.Forms.DialogResult]::Yes) { return }
             if (-not [IO.File]::Exists($env:BOOTLOG_EXECUTABLE)) {
                 throw 'Запустите настройки из BootLog.exe.'
             }
