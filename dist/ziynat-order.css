@@ -166,11 +166,21 @@
 .ziynat-order-page .designer-view-switch { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid #dadada; border-radius: 999px; background: #fff; }
 .ziynat-order-page .designer-view-switch button { min-width: 38px; min-height: 28px; border-radius: 999px; background: transparent; color: #666; font-size: 12px; font-weight: 700; cursor: pointer; }
 .ziynat-order-page .designer-view-switch button[aria-pressed="true"] { background: #991427; color: #fff; }
-.ziynat-order-page .designer-stage { position: relative; flex: 1; min-height: 310px; padding: clamp(16px,3vw,32px); border: 0; border-radius: 0; background: transparent; overflow: hidden; }
+.ziynat-order-page .designer-stage { position: relative; flex: 1; min-height: 310px; padding: clamp(48px,4vw,62px); border: 0; border-radius: 0; background: transparent; overflow: hidden; }
 .ziynat-order-page .designer-stage #designer-canvas { max-height: min(68dvh,650px); border: 1px solid #d1d1d1; border-radius: 3px; box-shadow: 0 16px 35px #24242427; }
 .ziynat-order-page .designer-inline-text { position: absolute; z-index: 6; width: 220px; max-width: 80%; padding: 6px 9px; border: 2px solid #991427; border-radius: 6px; background: #fffffff2; color: #991427; font: 700 20px Geometria,Arial,sans-serif; text-align: center; box-shadow: 0 5px 18px #24242436; transform: translate(-50%,-50%); }
 .ziynat-order-page .designer-inline-text[hidden] { display: none; }
-.ziynat-order-page .designer-canvas-handle { position: absolute; z-index: 5; width: 22px; height: 22px; border: 3px solid #fff; border-radius: 7px; background: #991427; box-shadow: 0 2px 9px #2424245c; touch-action: none; }
+.ziynat-order-page .designer-measure-frame { position: absolute; z-index: 3; border: 1px solid #9914279c; border-radius: 3px; pointer-events: none; box-shadow: 0 0 0 1px #ffffffa8; }
+.ziynat-order-page .designer-measure-frame::before,.ziynat-order-page .designer-measure-frame::after { content: ""; position: absolute; opacity: .65; }
+.ziynat-order-page .designer-measure-frame::before { inset: 0 0 auto; height: 7px; background: repeating-linear-gradient(90deg,#991427 0 1px,transparent 1px 12px); }
+.ziynat-order-page .designer-measure-frame::after { inset: 0 auto 0 0; width: 7px; background: repeating-linear-gradient(180deg,#991427 0 1px,transparent 1px 12px); }
+.ziynat-order-page .designer-measure-frame[hidden] { display: none!important; }
+.ziynat-order-page .designer-canvas-handle { position: absolute; z-index: 5; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 10px; background: transparent; opacity: 0; pointer-events: none; touch-action: none; transition: opacity .15s ease; }
+.ziynat-order-page .designer-canvas-handle::after { content: ""; display: block; width: 14px; height: 14px; margin: auto; border: 3px solid #fff; border-radius: 5px; background: #991427; box-shadow: 0 2px 8px #24242470; }
+.ziynat-order-page .designer-canvas-handle.handle-width::after { width: 10px; height: 22px; }
+.ziynat-order-page .designer-canvas-handle.handle-height::after { width: 22px; height: 10px; }
+.ziynat-order-page .designer-stage:hover .designer-canvas-handle,.ziynat-order-page .designer-stage:focus-within .designer-canvas-handle,.ziynat-order-page .designer-stage-area.is-resizing .designer-canvas-handle { opacity: 1; pointer-events: auto; }
+.ziynat-order-page .designer-canvas-handle:hover::after,.ziynat-order-page .designer-canvas-handle:focus-visible::after { background: #c61b35; box-shadow: 0 0 0 5px #99142735,0 2px 8px #24242470; }
 .ziynat-order-page .designer-canvas-handle[hidden],.ziynat-order-page .designer-stage-area.is-3d .designer-canvas-handle { display: none!important; }
 .ziynat-order-page .designer-canvas-handle.handle-width { cursor: ew-resize; }
 .ziynat-order-page .designer-canvas-handle.handle-height { cursor: ns-resize; }
@@ -178,6 +188,7 @@
 .ziynat-order-page .designer-canvas-handle[data-resize-edge="top-right"],.ziynat-order-page .designer-canvas-handle[data-resize-edge="bottom-left"] { cursor: nesw-resize; }
 .ziynat-order-page .designer-canvas-handle:focus-visible { outline: 3px solid #991427; outline-offset: 3px; }
 .ziynat-order-page .designer-size-label { position: absolute; z-index: 4; padding: 5px 8px; border: 1px solid #e7d7d9; border-radius: 6px; background: #fffffff0; box-shadow: 0 2px 8px #2424241c; color: #991427; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; pointer-events: none; }
+.ziynat-order-page .designer-size-height { transform: translate(-50%,-50%) rotate(-90deg); }
 .ziynat-order-page .designer-size-label[hidden],.ziynat-order-page .designer-stage-area.is-3d .designer-size-label { display: none!important; }
 .ziynat-order-page .designer-stage-note { margin: 0; padding: 12px 18px; border-top: 1px solid #dedede; color: #666; font-size: 11px; line-height: 1.4; }
 .ziynat-order-page .designer-inspector { min-width: 0; padding: 18px; background: #fff; }
@@ -244,6 +255,8 @@
   .ziynat-order-page .designer-product-hardware { width: 12px; height: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .ziynat-order-page .designer-3d-object { transition: none; } }
+@media (hover: none) { .ziynat-order-page .designer-canvas-handle { opacity: 1; pointer-events: auto; } }
+@media (prefers-reduced-motion: reduce) { .ziynat-order-page .designer-canvas-handle { transition: none; } }
 @container order-editor (min-width: 850px) {
   .ziynat-order-page .designer-layout { grid-template-columns: minmax(150px,180px) minmax(0,1fr) minmax(235px,280px); }
   .ziynat-order-page .designer-library { border-right: 1px solid #dedede; }
@@ -260,7 +273,7 @@
   .ziynat-order-page .designer-quick-tools button { justify-content: center; }
   .ziynat-order-page .designer-quick-tools button span:first-child { display: none; }
   .ziynat-order-page .designer-shape-options { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .ziynat-order-page .designer-stage { min-height: 240px; }
+  .ziynat-order-page .designer-stage { min-height: 240px; padding: 47px 42px; }
   .ziynat-order-page .designer-inspector { border-top: 1px solid #dedede; }
 }
 .ziynat-order-page .designer-fullscreen-view .order-design-panel.order-panel { display: block; max-width: 1800px; }

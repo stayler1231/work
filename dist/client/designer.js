@@ -7,6 +7,7 @@
   const inlineText = $('#designer-inline-text');
   const resizeHandles = $$('.designer-canvas-handle');
   const sizeLabels = {width:$('#designer-size-width'),height:$('#designer-size-height')};
+  const measureFrame = $('#designer-measure-frame');
   const preview = $('#designer-preview-canvas');
   const previewContext = preview.getContext('2d');
   const stageArea = $('.designer-stage-area');
@@ -131,6 +132,7 @@
     if (!context || !activeItem) return;
     const size = dimensions(activeItem);
     canvas.width = size.width; canvas.height = size.height;
+    fitCanvasDisplay();
     paint(context, activeItem, size.width, size.height, selected);
     if (previewContext) {
       preview.width = size.width; preview.height = size.height;
@@ -140,6 +142,21 @@
     else requestAnimationFrame(positionResizeHandles);
     if (!inlineText.hidden) requestAnimationFrame(positionInlineText);
     document.dispatchEvent(new Event('colourway:designer-change'));
+  }
+  function fitCanvasDisplay() {
+    if (!activeItem || stageArea.classList.contains('is-3d')) return;
+    const stage = canvas.parentElement;
+    const style = getComputedStyle(stage);
+    const availableWidth = stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    if (availableWidth <= 0) return;
+    const size = mockupSize(activeItem);
+    const unit = isBanner(activeItem) ? activeItem.template ? $('#order-dimension-unit').value : activeItem.unit || 'm' : 'm';
+    const physicalWidth = size.width / (unit === 'cm' ? 100 : 1);
+    const physicalHeight = size.height / (unit === 'cm' ? 100 : 1);
+    const baseScale = availableWidth * .78 / 3;
+    const scale = Math.min(baseScale,availableWidth / physicalWidth,Math.min(window.innerHeight * .68,650) / physicalHeight);
+    canvas.style.width = `${Math.max(40,Math.round(physicalWidth * scale))}px`;
+    canvas.style.height = `${Math.max(40,Math.round(physicalHeight * scale))}px`;
   }
   function positionInlineText() {
     if (inlineText.hidden || !activeItem) return;
@@ -166,17 +183,23 @@
     updateSizeLabels();
     const rect = canvas.getBoundingClientRect();
     const stage = canvas.parentElement.getBoundingClientRect();
+    const inset = 15;
+    const frame = {left:rect.left - inset,right:rect.right + inset,top:rect.top - inset,bottom:rect.bottom + inset};
+    measureFrame.style.left = `${frame.left - stage.left}px`;
+    measureFrame.style.top = `${frame.top - stage.top}px`;
+    measureFrame.style.width = `${frame.right - frame.left}px`;
+    measureFrame.style.height = `${frame.bottom - frame.top}px`;
     resizeHandles.forEach(handle => {
       const edge = handle.dataset.resizeEdge;
-      const x = edge.includes('left') ? rect.left : edge.includes('right') ? rect.right : rect.left + rect.width / 2;
-      const y = edge.includes('top') ? rect.top : edge.includes('bottom') ? rect.bottom : rect.top + rect.height / 2;
+      const x = edge.includes('left') ? frame.left : edge.includes('right') ? frame.right : rect.left + rect.width / 2;
+      const y = edge.includes('top') ? frame.top : edge.includes('bottom') ? frame.bottom : rect.top + rect.height / 2;
       handle.style.left = `${x - stage.left - handle.offsetWidth / 2}px`;
       handle.style.top = `${y - stage.top - handle.offsetHeight / 2}px`;
     });
     sizeLabels.width.style.left = `${rect.left - stage.left + rect.width / 2 - sizeLabels.width.offsetWidth / 2}px`;
-    sizeLabels.width.style.top = `${rect.top - stage.top + 18}px`;
-    sizeLabels.height.style.left = `${rect.left - stage.left + 12}px`;
-    sizeLabels.height.style.top = `${rect.top - stage.top + rect.height / 2 - sizeLabels.height.offsetHeight / 2}px`;
+    sizeLabels.width.style.top = `${frame.top - stage.top - sizeLabels.width.offsetHeight - 12}px`;
+    sizeLabels.height.style.left = `${frame.left - stage.left - 14}px`;
+    sizeLabels.height.style.top = `${rect.top - stage.top + rect.height / 2}px`;
   }
   function updateSizeLabels() {
     if (!activeItem || !canResizeMockup(activeItem)) return;
@@ -191,6 +214,7 @@
     const visible = canResizeMockup(activeItem) && !stageArea.classList.contains('is-3d');
     resizeHandles.forEach(handle => {handle.hidden = !visible;});
     Object.values(sizeLabels).forEach(label => {label.hidden = !visible;});
+    measureFrame.hidden = !visible;
     if (visible) requestAnimationFrame(positionResizeHandles);
   }
   function layerName(element, index) {
@@ -365,6 +389,7 @@
       const size = mockupSize(activeItem);
       const rect = canvas.getBoundingClientRect();
       resizing = {pointerId:event.pointerId,x:event.clientX,y:event.clientY,width:size.width,height:size.height,screenWidth:rect.width,screenHeight:rect.height};
+      stageArea.classList.add('is-resizing');
       handle.setPointerCapture(event.pointerId);
     });
     handle.addEventListener('pointermove', event => {
@@ -373,7 +398,7 @@
       const height = verticalSign ? resizing.height * (1 + verticalSign * (event.clientY - resizing.y) / Math.max(50,resizing.screenHeight)) : resizing.height;
       resizeMockup(width,height);
     });
-    const stop = () => {resizing = null;};
+    const stop = () => {resizing = null;stageArea.classList.remove('is-resizing');};
     handle.addEventListener('pointerup',stop);
     handle.addEventListener('pointercancel',stop);
     handle.addEventListener('lostpointercapture',stop);
@@ -387,7 +412,7 @@
       resizeMockup(size.width + (horizontal ? horizontalSign * (event.key === 'ArrowRight' ? step : -step) : 0),size.height + (vertical ? verticalSign * (event.key === 'ArrowDown' ? step : -step) : 0));
     });
   });
-  new ResizeObserver(() => requestAnimationFrame(positionResizeHandles)).observe(canvas.parentElement);
+  new ResizeObserver(() => requestAnimationFrame(() => {fitCanvasDisplay();positionResizeHandles();})).observe(canvas.parentElement);
   function setDrawingTool(active) {
     drawingTool = active;
     stageArea.classList.toggle('is-drawing',active);
@@ -412,6 +437,7 @@
   }));
   function setView(mode) {
     stageArea.classList.toggle('is-3d',mode === '3d');
+    if (mode === '2d') fitCanvasDisplay();
     $('#designer-view-2d').setAttribute('aria-pressed',String(mode === '2d'));
     $('#designer-view-3d').setAttribute('aria-pressed',String(mode === '3d'));
     $('#designer-reset-3d').hidden = mode !== '3d';

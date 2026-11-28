@@ -1,5 +1,5 @@
 'use strict';
-const CACHE_NAME="colourway-assets-7bc512b5db88";
+const CACHE_NAME="colourway-assets-9bf19daa4a14";
 const STATIC_FILE=/\.(?:css|js|woff2?|avif|gif|ico|jpe?g|png|svg|webp)$/i;
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
